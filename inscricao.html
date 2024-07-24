@@ -15,6 +15,9 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
+    <!-- SCRIPT -->
+    <script src="js/cpfFormat.js"></script>
+
     <title>Fórum Tecnológico Interdisciplinar</title>
 </head>
 
@@ -35,22 +38,23 @@
         <p>Complete sua inscrição e garanta sua vaga!</p>
 
         <!-- CAIXAS DE TEXTO -->
-        <div class="container form">
-            <input placeholder="Nome" id="nome" type="text" class="ImputBox validate" required>
-            <input placeholder="E-Mail" id="email" type="text" class="ImputBox validate" required>
-            <input placeholder="CPF (Somente números)" id="cpf" type="text" class="ImputBox validate" maxlength="11"
-                required>
-
+        <form class="container form" action="qrcode.html">
+            <input placeholder="Nome" id="nome" name="nm" type="text" class="ImputBox validate" required>
+            <input placeholder="E-Mail" id="email" name="email" type="email" class="ImputBox validate" required>
+            <input placeholder="CPF (Somente números)" id="cpf" name="cpf" type="text" class="ImputBox validate" minlength="13" maxlength="14" required>
+            <input type="text" id="cpfVerify" required hidden>
             <!-- CAIXA DE SELEÇÃO -->
-            <select id="SelectPC" class="ImputBox validate" required>
+            <select id="SelectPC" class="ImputBox validate" name="selectPC" required>
                 <option value="" selected disabled hidden>Entrar como</option>
-                <option value="PAR" id="par">Participante</option>
+                <option value="PAR">Participante</option>
                 <option value="CON">Convidado</option>
+                <option value="PAL">Palestrante</option>
             </select>
-        </div>
+
+            <button class="btn" style="width: 50%;margin-left: 25%;margin-right: 25%;">Inscrever-se</button>
+        </form>
 
         <!-- BOTÃO -->
-        <button class="btn" onclick="window.location.href='qrcode.html'">Inscrever-se</button>
 
         <!-- BANNER EVENTO -->
         <div class="slide-container">
@@ -70,7 +74,6 @@
             <br><a href="https://github.com/niButera">Nicolas</a> e <a href="https://github.com/yukio-sato">Yukio</a>
             3i3 - 1º Semestre - 2024
         </h5>
-        <script src="js/datas.js"></script>
     </div>
 </body>
 

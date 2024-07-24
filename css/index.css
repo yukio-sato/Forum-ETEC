@@ -113,7 +113,7 @@ a {
 }
 
 /* ICONE CALENDÁRIO */
-#Clndr1, #Clndr2, #Clndr3, #Clndr4, #Clndr5 {
+.eventPlanned {
     background-image: url('media/Calendario.png');
     background-position: 15px center;
     background-repeat: no-repeat; 
@@ -122,12 +122,12 @@ a {
 }
 
 /* INFOMRAÇÕES */
-#info1, #info2, #info3, #info4, #info5 {
+#SegundaInfo, #TerçaInfo, #QuartaInfo, #QuintaInfo, #SextaInfo {
     display: none;
     margin-top: 10px;
 }
 
-#info1.show, #info2.show, #info3.show, #info4.show, #info5.show {
+#SegundaInfo.show, #TerçaInfo.show, #QuartaInfo.show, #QuintaInfo.show, #SextaInfo.show {
     display: block;
 }
 
