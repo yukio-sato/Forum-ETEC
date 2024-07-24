@@ -14,11 +14,13 @@
     <link
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
-
-    <title>Fórum Tecnológico Interdisciplinar</title>
+    
+    <!-- SCRIPT -->
     <script src="js/qrDownLoad.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/qrcode@1.4.4/build/qrcode.min.js"></script>
+
+    <title>Fórum Tecnológico Interdisciplinar</title>
 </head>
 
 <body>
@@ -37,7 +39,29 @@
         <p>Inscrição conluída, esse é seu Codigo QR de acesso ao evento <br>Tenha-o em mãos na portaria!</p>
 
         <div id="RedBox">
-            <img src="https://api.qrserver.com/v1/create-qr-code/?data=ETEC&size=100%x100%" id="code">
+            <?php
+                session_start();
+                $userInfo = "Nome: ".$_SESSION["userNM"]." | Email: ".$_SESSION["email"]." | CPF: ".$_SESSION["cpf"]." | Entrar como: ".$_SESSION["identifier"];
+                echo '<img src="https://api.qrserver.com/v1/create-qr-code/?data='.$userInfo.'&size=100%x100%" id="code">';
+            ?>
+            <script>
+                async function down(){
+                    const { jsPDF } = window.jspdf;
+                    const pdf = new jsPDF();
+                    //pdf.text(`test:`, 10, 10); // text on pdf
+                                
+                    /* other method to generate a qr code with jspdf api
+                    const qrCodeCanvas = document.createElement('canvas');
+                    await QRCode.toCanvas(qrCodeCanvas, "https://api.qrserver.com/v1/create-qr-code/?data=${teste}&size=100x100");
+                    const qrCodeDataUrl = qrCodeCanvas.toDataURL('image/png');
+                    */
+                    <?php
+                        echo "pdf.addImage(`https://api.qrserver.com/v1/create-qr-code/?data=$userInfo&size=100x100`, 'PNG', 0, 0, 100, 100);"; // the qr code itself
+                    ?>    
+                                
+                    pdf.save('qrcode.pdf'); // download in your device
+                }
+            </script>
             <button id="Dwld" class="Btn3" onclick="down()">Baixar QrCode</button>
         </div>
     </div>
