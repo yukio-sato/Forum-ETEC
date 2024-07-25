@@ -41,6 +41,20 @@
         <div id="RedBox">
             <?php
                 session_start();
+
+                $servername = "localhost";
+                $username = "root";
+                $password = "root";
+                $dbname = "teste";
+
+                // Create connection
+                $conn = new mysqli($servername, $username, $password, $dbname);
+
+                $sql = "INSERT INTO pessoa
+                VALUES (null,'".$_SESSION["userNM"]."','".$_SESSION["email"]."','".$_SESSION["cpf"]."','".$_SESSION["identifier"]."')";
+
+                $conn->query($sql);
+                
                 $userInfo = "Nome: ".$_SESSION["userNM"]." | Email: ".$_SESSION["email"]." | CPF: ".$_SESSION["cpf"]." | Entrar como: ".$_SESSION["identifier"];
                 echo '<img src="https://api.qrserver.com/v1/create-qr-code/?data='.$userInfo.'&size=100%x100%" id="code">';
             ?>
