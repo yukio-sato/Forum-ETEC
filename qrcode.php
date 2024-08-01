@@ -27,14 +27,11 @@
     <!-- CABEÇALHO -->
     <div class="header">
         <a href="index.html"> <img src="css/media/voltar.png" id="back" alt="Voltar"></a>
-        <img src="css/media/flogo.png" id="logo" alt="Logo ETEC Adolpho Berezin" width="120px">
+        <img src="css/media/flogo2.jpg" id="logo" alt="Logo ETEC Adolpho Berezin" width="760px">
         <img src="css/media/empty.png" id="back">
     </div>
 
     <div class="container">
-        <!-- TITULO -->
-        <h1>Fórum Tecnológico Interdisciplinar</h1>
-
         <!-- INFORMAÇÕES -->
         <p>Inscrição conluída, esse é seu Codigo QR de acesso ao evento <br>Tenha-o em mãos na portaria!</p>
 
@@ -48,12 +45,21 @@
                 $dbname = "teste";
 
                 // Create connection
+                
+                if (!mysqli_ping(mysqli_connect($servername, $username, $password))) {
+                    header("location: erro.html");
+                    exit();
+                }
                 $conn = new mysqli($servername, $username, $password, $dbname);
-
+                
                 $sql = "INSERT INTO pessoa
-                VALUES (null,'".$_SESSION["userNM"]."','".$_SESSION["email"]."','".$_SESSION["cpf"]."','".$_SESSION["identifier"]."')";
+                VALUES ('".$_SESSION["cpf"]."','".$_SESSION["userNM"]."','".$_SESSION["email"]."','".$_SESSION["identifier"]."',0)";
 
-                $conn->query($sql);
+                $sqlChecker = "SELECT * FROM pessoa WHERE cpf_pessoa = '".$_SESSION["cpf"]."';";
+                $resultCheck = $conn->query($sqlChecker);
+                if ($resultCheck->num_rows <= 0){
+                    $result = $conn->query($sql);
+                }
                 
                 $userInfo = "Nome: ".$_SESSION["userNM"]." | Email: ".$_SESSION["email"]." | CPF: ".$_SESSION["cpf"]." | Entrar como: ".$_SESSION["identifier"];
                 echo '<img src="https://api.qrserver.com/v1/create-qr-code/?data='.$userInfo.'&size=100%x100%" id="code">';
@@ -62,7 +68,6 @@
                 async function down(){
                     const { jsPDF } = window.jspdf;
                     const pdf = new jsPDF();
-                    //pdf.text(`test:`, 10, 10); // text on pdf
                                 
                     /* other method to generate a qr code with jspdf api
                     const qrCodeCanvas = document.createElement('canvas');
@@ -70,7 +75,10 @@
                     const qrCodeDataUrl = qrCodeCanvas.toDataURL('image/png');
                     */
                     <?php
-                        echo "pdf.addImage(`https://api.qrserver.com/v1/create-qr-code/?data=$userInfo&size=100x100`, 'PNG', 0, 0, 100, 100);"; // the qr code itself
+                        echo "
+                        pdf.addImage(`https://api.qrserver.com/v1/create-qr-code/?data=$userInfo&size=100x100`, 'PNG', 5, 5, 50, 50);
+                        pdf.text(`Nome: ".$_SESSION["userNM"]."`, 60, 20); // text on pdf
+                        "; // the qr code itself
                     ?>    
                                 
                     pdf.save('qrcode.pdf'); // download in your device
