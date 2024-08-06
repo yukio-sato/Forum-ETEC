@@ -128,10 +128,12 @@
                     const qrCodeDataUrl = qrCodeCanvas.toDataURL('image/png');
                     */
                     <?php
+                    if ($_SESSION['userNM']){
                         echo "
                         pdf.addImage(`https://api.qrserver.com/v1/create-qr-code/?data=$userInfo&size=100x100`, 'PNG', 5, 5, 50, 50);
                         pdf.text(`Nome: ".$_SESSION["userNM"]."`, 60, 20); // text on pdf
                         "; // the qr code itself
+                    }
                     ?>    
                                 
                     pdf.save('qrcode.pdf'); // download in your device
