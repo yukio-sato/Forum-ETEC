@@ -39,10 +39,10 @@
             <?php
                 session_start();
 
-                $servername = "localhost";
-                $username = "root";
-                $password = "root";
-                $dbname = "teste";
+                $servername = "forumetec.mysql.database.azure.com";
+                $username = "forumetec";
+                $password = "f0rum3t3cab!";
+                $dbname = "cadastro";
 
                 // Create connection
                 
@@ -53,7 +53,7 @@
                 $conn = new mysqli($servername, $username, $password, $dbname);
                 
                 $sql = "INSERT INTO pessoa
-                VALUES ('".$_SESSION["cpf"]."','".$_SESSION["userNM"]."','".$_SESSION["email"]."','".$_SESSION["identifier"]."',0)";
+                VALUES (null,'".$_SESSION["cpf"]."','".$_SESSION["userNM"]."','".$_SESSION["email"]."','".$_SESSION["identifier"]."',0)";
 
                 $sqlChecker = "SELECT * FROM pessoa WHERE cpf_pessoa = '".$_SESSION["cpf"]."';";
                 $resultCheck = $conn->query($sqlChecker);
