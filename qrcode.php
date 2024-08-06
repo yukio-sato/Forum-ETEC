@@ -97,10 +97,15 @@
 
                 // Create connection
                 
-                /*if (!mysqli_ping(mysqli_connect($servername, $username, $password))) {
+                if (!mysqli_ping(mysqli_connect($servername, $username, $password))) {
+                    echo "<script>console.log('Banco de dados não encontrado!')</script>";
                     header("location: erro.html");
                     exit();
-                }*/
+                }
+                else
+                {
+                    echo "<script>console.log('Conectado')</script>";
+                }
                 $conn = new mysqli($servername, $username, $password, $dbname);
                 
                 $sql = "INSERT INTO tb_pessoa
@@ -113,7 +118,7 @@
                 }
                 
                 $userInfo = "Nome: ".$_SESSION["userNM"]." | Email: ".$_SESSION["email"]." | CPF: ".$_SESSION["cpf"]." | Entrar como: ".$_SESSION["identifier"];
-                //echo '<img src="https://api.qrserver.com/v1/create-qr-code/?data='.$userInfo.'&size=100%x100%" id="code">';
+                echo '<img src="https://api.qrserver.com/v1/create-qr-code/?data='.$userInfo.'&size=100%x100%" id="code">';
             ?>
             <script>
                 async function down(){
