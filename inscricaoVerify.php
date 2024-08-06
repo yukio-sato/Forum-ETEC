@@ -33,6 +33,10 @@
     $email = $_POST['email'];
     $cpf = $_POST['cpf'];
     $identifier = $_POST['selectPC'];
+    echo $userNM;
+    echo $email;
+    echo $cpf;
+    echo $identifier;
     session_start();
     $_SESSION["userNM"] = $userNM;
     $_SESSION["email"] = $email;
