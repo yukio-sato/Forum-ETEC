@@ -100,13 +100,13 @@
 
                 if (!mysqli_ping(mysqli_connect($servername, $username, $password))) {
                     echo "<script>console.log('Banco de dados não encontrado!')</script>";
-                    header("location: https://forumetecab-frcjhtbde8dbfed0.brazilsouth-01.azurewebsites.net/error.html");
+                    header("location: https://forumetecab-frcjhtbde8dbfed0.brazilsouth-01.azurewebsites.net/erro.html");
                     exit();
                 }
                 else{
                     echo "<script>console.log('Conectado')</script>";
                 }
-                
+
                 $conn = new mysqli($servername, $username, $password, $dbname);
                 
                 $sql = "INSERT INTO tb_pessoa
