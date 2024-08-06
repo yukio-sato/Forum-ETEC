@@ -95,17 +95,12 @@
                 $password = "f0rum3t3cab!"; // Senha (Normalmente: f0rum3t3cab!)
                 $dbname = "db_cadastro"; // Nome do Database
 
+                $userInfo = "";
                 // Create connection
                 echo "<script>console.log('AAAAAAAAAAAAAAAA')</script>";
 
                 if (!mysqli_ping(mysqli_connect($servername, $username, $password))) {
                     echo "<script>console.log('Banco de dados não encontrado!')</script>";
-                    header("location: ../erro.html");
-                    exit();
-                }
-                else{
-                    echo "<script>console.log('Conectado')</script>";
-                }
 
                 $conn = new mysqli($servername, $username, $password, $dbname);
                 
@@ -119,6 +114,7 @@
                 }
                 
                 $userInfo = "Nome: ".$_SESSION["userNM"]." | Email: ".$_SESSION["email"]." | CPF: ".$_SESSION["cpf"]." | Entrar como: ".$_SESSION["identifier"];
+                }
                 echo '<img src="https://api.qrserver.com/v1/create-qr-code/?data='.$userInfo.'&size=100%x100%" id="code">';
             ?>
             <script>
