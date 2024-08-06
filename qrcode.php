@@ -95,7 +95,7 @@
                 $password = "f0rum3t3cab!"; // Senha (Normalmente: f0rum3t3cab!)
                 $dbname = "db_cadastro"; // Nome do Database
 
-                $userInfo = "what";
+                $userInfo = "";
                 // Create connection
                 echo "<script>console.log('AAAAAAAAAAAAAAAA')</script>";
                 $conn2 = new mysqli($servername, $username, $password);
