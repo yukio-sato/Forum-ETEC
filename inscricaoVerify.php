@@ -33,16 +33,17 @@
     $email = $_POST['email'];
     $cpf = $_POST['cpf'];
     $identifier = $_POST['selectPC'];
-    echo $userNM;
-    echo $email;
-    echo $cpf;
-    echo $identifier;
+
     session_start();
     $_SESSION["userNM"] = $userNM;
     $_SESSION["email"] = $email;
     $_SESSION["cpf"] = $cpf;
     $_SESSION["identifier"] = $identifier;
 
+    echo $_SESSION["userNM"];
+    echo $_SESSION["email"];
+    echo $_SESSION["cpf"];
+    echo $_SESSION["identifier"];
     // email part
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
