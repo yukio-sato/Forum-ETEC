@@ -75,7 +75,7 @@
         $mail->Body = '
         <h1>Olá <strong>'.$userNM.'<strong>!</h1>
         <hr>
-        <a href="http://localhost/Forum-ETEC/qrcode.php">Link Teste</a>
+        <a href="https://forumetecab-frcjhtbde8dbfed0.brazilsouth-01.azurewebsites.net/qrcode.php">Link Teste</a>
         '; // descrição
         $mail->AltBody = 'Chegou mensagem'; // texto para cegos?
     
