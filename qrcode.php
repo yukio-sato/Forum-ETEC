@@ -96,7 +96,7 @@
                 $dbname = "db_cadastro"; // Nome do Database
 
                 // Create connection
-                
+                echo "<script>console.log('AAAAAAAAAAAAAAAA')</script>";
                 if (!mysqli_ping(mysqli_connect($servername, $username, $password))) {
                     echo "<script>console.log('Banco de dados não encontrado!')</script>";
                     header("location: erro.html");
