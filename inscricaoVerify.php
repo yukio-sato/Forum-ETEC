@@ -40,10 +40,6 @@
     $_SESSION["cpf"] = $cpf;
     $_SESSION["identifier"] = $identifier;
 
-    echo $_SESSION["userNM"];
-    echo $_SESSION["email"];
-    echo $_SESSION["cpf"];
-    echo $_SESSION["identifier"];
     // email part
     use PHPMailer\PHPMailer\PHPMailer;
     use PHPMailer\PHPMailer\SMTP;
