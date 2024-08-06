@@ -39,23 +39,79 @@
             <?php
                 session_start();
 
-                $servername = "forumetec.mysql.database.azure.com";
-                $username = "forumetec";
-                $password = "f0rum3t3cab!";
-                $dbname = "cadastro";
+                /*
+                Para que consiga conectar com o banco de dados, você pode utilizar o Xampp control ou utilizar um serviço Azure.
+                O serviço Azure é um pouco mais complicado devido a questão que não é 100% gratis, onde toda vez que seu banco está
+                ligado ele gasta o seus créditos, desta maneira, para testes, não esqueça de desliga-lo após o uso.
+                Nota: é recomendado utilizar Xampp localmente e após ter certeza do site em sí, utilize azure.
+                Motivo por utilizar Microsoft Azure: normalmente o azure possui compatibilidade com PHP, caso encontre algum serviço que
+                também possui compatibilidade e saiba utilizar, não hesite.
+
+                Caso esteja utilizando azure:
+                 1- Após fazer a parte chata de receber créditos, você deve começar com o "MySQL Flexible" ou como demonstrado "Azure Database for MySQL Flexible Server".
+                 2- Clique em Criar.
+                 3- Em Assinatura -> Grupo de Recursos, crie um novo grupo, ou utilize um já existente para o Forum (provavelmente você terá que criar).
+                 4- Insira o nome do Servidor (qualquer um desde que lembre).
+                 5- Região coloque "Brazil South".
+                 6- Versão MySQL: a mais antiga disponivel (8.0 atualmente no dia que escrevi).
+                 7- Zona de Disponibilidade: Nenhuma preferência.
+                 8- Não Ative alta disponibilidade (a não ser que queira perder seus créditos de maneira rápida)
+                 9- Método de autenticação: MySQL somente autenticação
+                10- Nome do usuário do administrador: forumetec (nome que define o username do MySQL)
+                11- Senha: f0rum3t3cab! (senha do banco de dados)
+                12- Clique em Avançar
+                13- Regras de Firewall -> Permitir o acesso público de qualquer serviço do Azure de dentro do Azure para esse servidor, deixe ativado
+                14- Adicione o endereço de IP do cliente atual
+                15- Adicione 0.0.0.0 - 255.255.255.255
+                16- Clique em Revisar e Criar
+                17- Clique em Criar e espere
+                18- Após isso demonstrará o seu banco de dados abaixo, clique para ver o banco de dados
+                19- Vai em configuração -> conectar
+                20- Utilize as informações do detalhes da conexão
+                21- Por via das dúvidas, após isso vai em Paramêtros de Segurança
+                22- Ache o "require_secure_transport" e deixe em OFF
+
+                Aplicativo Web (onde vai ficar a sua página no azure)
+                 1- Procure por Aplicativo da mesma maneira que o MySQL Flexible
+                 2- Clique em Criar
+                 3- Utilize o mesmo Grupo de Recursos utilizado no MySQL Flexible
+                 4- Coloque o Nome
+                 5- Em "Pilha de runtime" coloque a ultima versão de PHP (8.3 atualmente enquanto escrevo)
+                 6- Região: Brazil South
+                 7- Avança até "Implantação"
+                 8- Ative "Implantação Contínua"
+                 9- Conecte seu Github e coloque seu repósitio que deseja estar na internet
+                    Organização: (Você mesmo)
+                    Repositório: Selecione na qual é o forum
+                    Branch: Main (Normalmente caso você não tenha realizado algum passo diferente no github)
+                10- Avança até "Revisar e Criar"
+                11- Clique em "Criar" e espere.
+                12- Aparece a Web abaixo e clique.
+                13- Em visão geral seu link é do "Domínio Padrão"
+                */
+
+                $servername = "forumetec.mysql.database.azure.com"; // Link do Azure
+                $username = "forumetec"; // Nome do Usuario do MYSQLI
+                $password = "f0rum3t3cab!"; // Senha (Normalmente: f0rum3t3cab!)
+                $dbname = "db_cadastro"; // Nome do Database
 
                 // Create connection
                 
                 if (!mysqli_ping(mysqli_connect($servername, $username, $password))) {
+                    echo "<script>console.log('Banco de dados não encontrado!')</script>"
                     header("location: erro.html");
                     exit();
                 }
+                else
+                {
+                    echo "<script>console.log('Conectado')</script>"
+                }
                 $conn = new mysqli($servername, $username, $password, $dbname);
                 
-                $sql = "INSERT INTO pessoa
+                $sql = "INSERT INTO tb_pessoa
                 VALUES (null,'".$_SESSION["cpf"]."','".$_SESSION["userNM"]."','".$_SESSION["email"]."','".$_SESSION["identifier"]."',0)";
 
-                $sqlChecker = "SELECT * FROM pessoa WHERE cpf_pessoa = '".$_SESSION["cpf"]."';";
+                $sqlChecker = "SELECT * FROM tb_pessoa WHERE cpf_pessoa = '".$_SESSION["cpf"]."';";
                 $resultCheck = $conn->query($sqlChecker);
                 if ($resultCheck->num_rows <= 0){
                     $result = $conn->query($sql);

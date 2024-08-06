@@ -1,7 +1,7 @@
-create database cadastro;
-use cadastro;
+create database db_cadastro;
+use db_cadastro;
 
-create table pessoa(
+create table tb_pessoa(
     cd_pessoa int auto_increment not null,
     cpf_pessoa char(14) not null,
 	nm_pessoa varchar(45),
@@ -10,3 +10,6 @@ create table pessoa(
     dia_pessoa int,
     primary key(cd_pessoa)
 );
+
+select * from tb_pessoa;
+#utilize drop database em testes para remover os valores, caso contrário você apagará todas as informações do usuário
