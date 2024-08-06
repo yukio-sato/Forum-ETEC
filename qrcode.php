@@ -97,14 +97,20 @@
 
                 // Create connection
                 echo "<script>console.log('AAAAAAAAAAAAAAAA')</script>";
+
+                $conectado = false;
                 if (!mysqli_ping(mysqli_connect($servername, $username, $password))) {
                     echo "<script>console.log('Banco de dados não encontrado!')</script>";
-                    header("location: erro.html");
                     exit();
                 }
                 else
                 {
+                    $conectado = true;
                     echo "<script>console.log('Conectado')</script>";
+
+                }
+                if ($conectado == false){
+                    header("location: erro.html");
                 }
                 $conn = new mysqli($servername, $username, $password, $dbname);
                 
