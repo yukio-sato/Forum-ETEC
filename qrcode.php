@@ -108,6 +108,10 @@
 
                 $conn = new mysqli($servername, $username, $password, $dbname);
                 
+                echo "<hr>";
+                echo $_SESSION["cpf"];
+                echo "<h1>Aqui!</h1>";
+                echo "<hr>";
                 $sql = "INSERT INTO tb_pessoa
                 VALUES (null,'".$_SESSION["cpf"]."','".$_SESSION["userNM"]."','".$_SESSION["email"]."','".$_SESSION["identifier"]."',0)";
 
