@@ -37,8 +37,6 @@
 
         <div id="RedBox">
             <?php
-                session_start();
-
                 /*
                 Para que consiga conectar com o banco de dados, você pode utilizar o Xampp control ou utilizar um serviço Azure.
                 O serviço Azure é um pouco mais complicado devido a questão que não é 100% gratis, onde toda vez que seu banco está
@@ -108,20 +106,26 @@
 
                 $conn = new mysqli($servername, $username, $password, $dbname);
                 
+
+
                 echo "<hr>";
-                echo $_SESSION["cpf"];
+                echo $_POST['nm'];
                 echo "<h1>Aqui!</h1>";
                 echo "<hr>";
+                $nome = $_POST['userNM'];
+                $userEmail = $_POST['email'];
+                $userCPF = $_POST['cpf'];
+                $identificador = $_POST['identifier'];
                 $sql = "INSERT INTO tb_pessoa
-                VALUES (null,'".$_SESSION["cpf"]."','".$_SESSION["userNM"]."','".$_SESSION["email"]."','".$_SESSION["identifier"]."',0)";
+                VALUES (null,'".$userCPF."','".$nome."','".$userEmail."','".$identificador."',0)";
 
-                $sqlChecker = "SELECT * FROM tb_pessoa WHERE cpf_pessoa = '".$_SESSION["cpf"]."';";
+                $sqlChecker = "SELECT * FROM tb_pessoa WHERE cpf_pessoa = '".$userCPF."';";
                 $resultCheck = $conn->query($sqlChecker);
                 if ($resultCheck->num_rows <= 0){
                     $result = $conn->query($sql);
                 }
                 
-                $userInfo = "Nome: ".$_SESSION["userNM"]." | Email: ".$_SESSION["email"]." | CPF: ".$_SESSION["cpf"]." | Entrar como: ".$_SESSION["identifier"];
+                $userInfo = "Nome: ".$nome." | Email: ".$userEmail." | CPF: ".$userCPF." | Entrar como: ".$identificador;
                 echo '<img src="https://api.qrserver.com/v1/create-qr-code/?data='.$userInfo.'&size=100%x100%" id="code">';
             ?>
             <script>

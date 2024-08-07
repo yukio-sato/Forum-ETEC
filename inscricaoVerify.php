@@ -34,11 +34,11 @@
     $cpf = $_POST['cpf'];
     $identifier = $_POST['selectPC'];
 
-    session_start();
+    /*session_start();
     $_SESSION["userNM"] = $userNM;
     $_SESSION["email"] = $email;
     $_SESSION["cpf"] = $cpf;
-    $_SESSION["identifier"] = $identifier;
+    $_SESSION["identifier"] = $identifier;*/
 
     // email part
     use PHPMailer\PHPMailer\PHPMailer;
@@ -76,7 +76,13 @@
         $mail->Body = '
         <h1>Olá <strong>'.$userNM.'<strong>!</h1>
         <hr>
-        <a href="https://forumetecab-frcjhtbde8dbfed0.brazilsouth-01.azurewebsites.net/qrcode.php">Link Teste</a>
+        <form method="post" action="https://forumetecab-frcjhtbde8dbfed0.brazilsouth-01.azurewebsites.net/qrcode.php">
+            <input type="text" name="userNM" value="'.$userNM.'" hidden>
+            <input type="text" name="email" value="'.$email.'" hidden>
+            <input type="text" name="cpf" value="'.$cpf.'" hidden>
+            <input type="text" name="identifier" value="'.$identifier.'" hidden>
+            <button type="submit">Clique Aqui!</button>
+        </form>
         '; // descrição
         $mail->AltBody = 'Chegou mensagem'; // texto para cegos?
     
