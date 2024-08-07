@@ -83,38 +83,48 @@
     
         if ($mail->send()) {
             echo '
-            <div class="content">
-        <!-- INFORMAÇÕES -->
-        <br>
-        <br>
-        <h1>Email Enviado</h1>
-        <a onclick="window.location.reload();">Reenviar Email</a>
-        </div>
-
-        <div class="footer" style="margin-top: 25%;">
-            <h5>Site desenvolvido pelos alunos
-                <br><a href="https://github.com/niButera">Nicolas</a> e <a href="https://github.com/yukio-sato">Yukio</a>
-            3i3 - 1º Semestre - 2024
-          </h5>
-        </div>
-            ';
-        }else {
-            echo '
-            <div class="content">
+                <div class="header">
+                    <a href="index.html"> <img src="css/media/voltar.png" id="back" alt="Voltar"></a>
+                    <img src="css/media/flogo2.jpg" id="logo" alt="Logo ETEC Adolpho Berezin" width="760px">
+                    <img src="css/media/empty.png" id="back">
+                </div>
+                <div class="content">
                 <!-- INFORMAÇÕES -->
                 <br>
                 <br>
-                <h1>Ocorreu um erro inesperado</h1>
-                <p>Por favor tente novamente mais tarde.</p>
-            </div>
+                <h1>Email Enviado</h1>
+                <p onclick="window.location.reload();" style="border-bottom: black solid 1px;width:20%;margin: auto">Reenviar Email</p>
+                </div>
 
-            <div class="footer" style="margin-top: 25%;">
-                <h5>Site desenvolvido pelos alunos
-                    <br><a href="https://github.com/niButera">Nicolas</a> e <a href="https://github.com/yukio-sato">Yukio</a>
-                    3i3 - 1º Semestre - 2024
-                </h5>
-            </div>
-        ';
+                <div class="footer" style="margin-top: 25%;">
+                    <h5>Site desenvolvido pelos alunos
+                        <br><a href="https://github.com/niButera">Nicolas</a> e <a href="https://github.com/yukio-sato">Yukio</a>
+                        3i3 - 1º Semestre - 2024
+                    </h5>
+                </div>
+            ';
+        }else {
+            echo '
+                <div class="header">
+                    <a href="index.html"> <img src="css/media/voltar.png" id="back" alt="Voltar"></a>
+                    <img src="css/media/flogo2.jpg" id="logo" alt="Logo ETEC Adolpho Berezin" width="760px">
+                    <img src="css/media/empty.png" id="back">
+                </div>
+                <div class="content">
+                    <!-- INFORMAÇÕES -->
+                    <br>
+                    <br>
+                    <h1>Ocorreu um erro inesperado</h1>
+                    <p>Por favor tente novamente mais tarde.</p>
+                </div>
+
+                <div class="footer" style="margin-top: 25%;">
+                    <h5>Site desenvolvido pelos alunos
+                        <br><a href="https://github.com/niButera">Nicolas</a> e <a href="https://github.com/yukio-sato">Yukio</a>
+                        3i3 - 1º Semestre - 2024
+                    </h5>
+                </div>
+            ';
         }
     } catch (Exception $e) {
         //echo "Erro ao enviar mensagem: {$mail->ErrorInfo}";
