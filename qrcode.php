@@ -109,13 +109,13 @@
 
 
                 echo "<hr>";
-                echo $_POST['nm'];
+                echo $_GET['nome'];
                 echo "<h1>Aqui!</h1>";
                 echo "<hr>";
-                $nome = $_POST['userNM'];
-                $userEmail = $_POST['email'];
-                $userCPF = $_POST['cpf'];
-                $identificador = $_POST['identifier'];
+                $nome = $_GET['nome'];
+                $userEmail = $_GET['email'];
+                $userCPF = $_GET['cpf'];
+                $identificador = $_GET['enter'];
                 $sql = "INSERT INTO tb_pessoa
                 VALUES (null,'".$userCPF."','".$nome."','".$userEmail."','".$identificador."',0)";
 
