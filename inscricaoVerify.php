@@ -75,13 +75,29 @@
         $mail->Subject = 'Teste de Envio de Email'; // titulo do email
         $mail->Body = '
         <h1>Olá <strong>'.$userNM.'<strong>!</h1>
+        <h3>Segue abaixo o Link para o QR Code</h3>
         <hr>
         <a href="https://forumetecab-frcjhtbde8dbfed0.brazilsouth-01.azurewebsites.net/qrcode.php?nome='.$userNM.'&email='.$email.'&cpf='.$cpf.'&enter='.$identifier.'">Clique aqui!</a>
         '; // descrição
         $mail->AltBody = 'Chegou mensagem'; // texto para cegos?
     
         if ($mail->send()) {
-            //echo "Email Enviado com sucesso!";
+            echo '
+            <div class="content">
+        <!-- INFORMAÇÕES -->
+        <br>
+        <br>
+        <h1>Email Enviado</h1>
+        <a onclick="window.location.reload();">Reenviar Email</a>
+        </div>
+
+        <div class="footer" style="margin-top: 25%;">
+            <h5>Site desenvolvido pelos alunos
+                <br><a href="https://github.com/niButera">Nicolas</a> e <a href="https://github.com/yukio-sato">Yukio</a>
+            3i3 - 1º Semestre - 2024
+          </h5>
+        </div>
+            ';
         }else {
             //echo "Email não enviado!";
         }

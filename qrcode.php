@@ -95,23 +95,15 @@
 
                 $userInfo = "";
                 // Create connection
-                echo "<script>console.log('AAAAAAAAAAAAAAAA')</script>";
                 $conn2 = new mysqli($servername, $username, $password);
 
                 // Check connection
                 if ($conn2->connect_error) {
-                    echo "<script>console.log('AAAAAAAAAAAAAAAA222222222222')</script>";
                   die("Connection failed: " . $conn2->connect_error);
                 }
 
                 $conn = new mysqli($servername, $username, $password, $dbname);
                 
-
-
-                echo "<hr>";
-                echo $_GET['nome'];
-                echo "<h1>Aqui!</h1>";
-                echo "<hr>";
                 $nome = $_GET['nome'];
                 $userEmail = $_GET['email'];
                 $userCPF = $_GET['cpf'];
