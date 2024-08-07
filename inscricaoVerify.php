@@ -99,7 +99,22 @@
         </div>
             ';
         }else {
-            //echo "Email não enviado!";
+            echo '
+            <div class="content">
+                <!-- INFORMAÇÕES -->
+                <br>
+                <br>
+                <h1>Ocorreu um erro inesperado</h1>
+                <p>Por favor tente novamente mais tarde.</p>
+            </div>
+
+            <div class="footer" style="margin-top: 25%;">
+                <h5>Site desenvolvido pelos alunos
+                    <br><a href="https://github.com/niButera">Nicolas</a> e <a href="https://github.com/yukio-sato">Yukio</a>
+                    3i3 - 1º Semestre - 2024
+                </h5>
+            </div>
+        ';
         }
     } catch (Exception $e) {
         //echo "Erro ao enviar mensagem: {$mail->ErrorInfo}";
