@@ -1,5 +1,6 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+
     var cpfInput = document.getElementById("cpf"); // here is the CPF ID of the input
 
     cpfInput.addEventListener("input", () => {
@@ -25,7 +26,41 @@ document.addEventListener("DOMContentLoaded", () => {
             var formatCPF = partOne + partTwo + partThree + numeric.slice(9, 11);
             cpfInput.value = formatCPF;
         }
+
         if (formatCPF.length == 14){
+            var Soma = 0, Resto = 0, cpfValidy = true;
+            var cpfNumber = formatCPF.replace(".","").replace(".","").replace("-","")
+            if (cpfNumber == "00000000000") {
+                cpfValidy = false;
+            }
+        
+            for (i=1; i<=9; i++){
+                Soma += parseInt(cpfNumber.substring(i-1, i)) * (11 - i);
+            }
+            Resto = (Soma * 10) % 11;
+        
+            if ((Resto == 10) || (Resto == 11))  {
+                Resto = 0;
+            }
+
+            if (Resto != parseInt(cpfNumber.substring(9, 10)) ) {
+                cpfValidy = false;
+            }
+        
+            Soma = 0;
+            for (i = 1; i <= 10; i++) {
+                Soma += parseInt(cpfNumber.substring(i-1, i)) * (12 - i);
+            }
+            Resto = (Soma * 10) % 11;
+        
+            if ((Resto == 10) || (Resto == 11))  {
+                Resto = 0;
+            }
+            if (Resto != parseInt(cpfNumber.substring(10, 11))) {
+                cpfValidy = false;
+            }
+        }
+        if (formatCPF.length == 14 && cpfValidy == true){
             document.getElementById("cpfVerify").value = cpfInput;
         } else{
             document.getElementById("cpfVerify").value = "";

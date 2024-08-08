@@ -88,36 +88,25 @@
                 13- Em visão geral seu link é do "Domínio Padrão"
                 */
 
-                $servername = "forumetec.mysql.database.azure.com"; // Link do Azure
-                $username = "forumetec"; // Nome do Usuario do MYSQLI
-                $password = "f0rum3t3cab!"; // Senha (Normalmente: f0rum3t3cab!)
-                $dbname = "db_cadastro"; // Nome do Database
+                require "conexao.php";
 
-                $userInfo = "";
-                // Create connection
-                $conn2 = new mysqli($servername, $username, $password);
-
-                // Check connection
-                if ($conn2->connect_error) {
-                  die("Connection failed: " . $conn2->connect_error);
-                }
-
-                $conn = new mysqli($servername, $username, $password, $dbname);
-                
                 $nome = $_GET['nome'];
                 $userEmail = $_GET['email'];
                 $userCPF = $_GET['cpf'];
                 $identificador = $_GET['enter'];
+    
+                $userInfo = "";
+                
                 $sql = "INSERT INTO tb_pessoa
-                VALUES (null,'".$userCPF."','".$nome."','".$userEmail."','".$identificador."',0)";
-
+                VALUES ('".$userCPF."','".$nome."','".$userEmail."','".$identificador."',0,1)"; // o 1 é fk da tb mude
+    
                 $sqlChecker = "SELECT * FROM tb_pessoa WHERE cpf_pessoa = '".$userCPF."';";
                 $resultCheck = $conn->query($sqlChecker);
                 if ($resultCheck->num_rows <= 0){
                     $result = $conn->query($sql);
                 }
-                
-                $userInfo = "Nome: ".$nome." | Email: ".$userEmail." | CPF: ".$userCPF." | Entrar como: ".$identificador;
+                $userInfo = "https://forumetecab-frcjhtbde8dbfed0.brazilsouth-01.azurewebsites.net/qrCodeEscaneado.php?cpf='.$userCPF.'";
+                //$userInfo = "Nome: ".$nome." | Email: ".$userEmail." | CPF: ".$userCPF." | Entrar como: ".$identificador;
                 echo '<img src="https://api.qrserver.com/v1/create-qr-code/?data='.$userInfo.'&size=100%x100%" id="code">';
             ?>
             <script>

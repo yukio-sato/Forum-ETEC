@@ -100,6 +100,7 @@ input::placeholder {
     cursor: pointer;
     color: white;
     border: 0px;
+    transition: all 0.25s;
 }
 
 .Btn2 {
@@ -132,14 +133,17 @@ input::placeholder {
     /* FONTE */
     font-family: "Poppins", sans-serif;
     color: rgb(0, 0, 0);
+    transition: all 0.25s;
 }
 
 .btn:hover {
     box-shadow: 0 0 10px 0 rgba(255, 0, 0, 0.7);
+    transition: all 0.25s;
 }
 
 .Btn3:hover {
     box-shadow: inset 0 0 10px 0 rgba(0, 0, 0, 0.623);
+    transition: all 0.25s;
 }
 
 /* SLIDE */

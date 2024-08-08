@@ -8,75 +8,179 @@ function toggleInfo(buttonId) {
 }
 
 var eventosPlanejados = [
-    [ "Segunda", "29/09", // Dia da Semana e Data
-        [ // Informações do Evento abaixo:
-            "Nome Teste",
-            "Local do Evento",
-            "12:10",
-            "Descrição do evento pode ser longa.",
+    [ "Segunda", "09/09", ///////////////////////////////////// Segunda ////////////////////////////////////////
+        [ // Informações do Evento abaixo: /////////////////// Evento
+            [ // pessoas
+                [ // informações
+                    "Teste", // nome
+                    "css/media/email.png", // imagem
+                    null, // profissão
+                ],
+                [ // informações
+                    null, // nome
+                    null, // imagem
+                    null, // profissão
+                ],
+            ],
+            "Auditório Principal (Quadra)",
+            "Período noturno",
+            "Avertura Solene e palestra global.",
         ],
     ],
 
-    [ "Terça", "30/09", // Dia da Semana e Data
-        [ // Informações do Evento abaixo:
-            
+    [ "Terça", "10/09", ///////////////////////////////////// Terça ////////////////////////////////////////
+        [ // Informações do Evento abaixo: /////////////////// Evento
+            [ // pessoas
+                [ // informações
+                    null, // nome
+                    null, // imagem
+                    null, // profissão
+                ],
+            ],
+            "Auditório Principal (Quadra)",
+            "Período tarde",
+            "Enfermagem",
         ],
-    ],
-
-    [ "Quarta", "31/09", // Dia da Semana e Data
-        [ // Informações do Evento abaixo:
+        [ // Informações do Evento abaixo: /////////////////// Evento
+            [ // pessoas
+                [ // informações
+                    null, // nome
+                    null, // imagem
+                    null, // profissão
+                ],
+            ],
+            "Auditório Principal (Quadra)",
+            "Período noturno",
+            "Edificações / Administração",
         ],
-    ],
-
-    [ "Quinta", "01/10", // Dia da Semana e Data
-        [ // Informações do Evento abaixo:
-            "nome pessoa test",
-            "Local evento test",
-            "66:66",
-            "Descrição",
-        ],
-        [ // Informações do Evento abaixo:
-            "Marcelo",
-        ],
-        [ // Informações do Evento abaixo:
-            "José Carlos",
+        [ // Informações do Evento abaixo: /////////////////// Evento
+            [ // pessoas
+                [ // informações
+                    null, // nome
+                    null, // imagem
+                    null, // profissão
+                ],
+            ],
+            "Auditório Alternativo (1° Andar)",
             null,
-            "10:55",
-            null,
+            "Informática",
         ],
     ],
 
-    [ "Sexta", "01/10", // Dia da Semana e Data
-        [ // Informações do Evento abaixo:
+    [ "Quarta", "11/09", ///////////////////////////////////// Quarta ////////////////////////////////////////
+        [ // Informações do Evento abaixo: /////////////////// Evento
+            [ // pessoas
+                [ // informações
+                    null, // nome
+                    null, // imagem
+                    null, // profissão
+                ],
+            ],
+            "Auditório Principal (Quadra)",
+            "Período tarde",
+            "Ensino Médio",
+        ],
+        [ // Informações do Evento abaixo: /////////////////// Evento
+            [ // pessoas
+                [ // informações
+                    null, // nome
+                    null, // imagem
+                    null, // profissão
+                ],
+            ],
+            "Auditório Principal (Quadra)",
+            "Período noturno",
+            "Turismo / Informática",
+        ],
+        [ // Informações do Evento abaixo: /////////////////// Evento
+            [ // pessoas
+                [ // informações
+                    null, // nome
+                    null, // imagem
+                    null, // profissão
+                ],
+            ],
+            "Auditório Alternativo (1° Andar)",
+            null,
+            "Edificações",
+        ],
+    ],
+
+    [ "Quinta", "12/09", ///////////////////////////////////// Quinta ////////////////////////////////////////
+        [ // Informações do Evento abaixo: /////////////////// Evento
+            [ // pessoas
+                [ // informações
+                    null, // nome
+                    null, // imagem
+                    null, // profissão
+                ],
+            ],
+            "Auditório Alternativo (1° Andar)",
+            null,
+            "Administração",
+        ],
+    ],
+
+    [ "Sexta", "13/09", ///////////////////////////////////// Sexta ////////////////////////////////////////
+        [ // Informações do Evento abaixo: /////////////////// Evento
+            [ // pessoas
+                [ // informações
+                    null, // nome
+                    null, // imagem
+                    null, // profissão
+                ],
+            ],
+            null,
+            null,
+            null,
         ],
     ],
 ];
 document.addEventListener("DOMContentLoaded", () => {
+    var UDP = 0; // Ultimo dia Planejado
+    var lastDayFound = false; // Variavel que bloqueia a alteração do valor caso seja chamado novamente
+    for (let ind = eventosPlanejados.length-1; ind >= 0; ind--) {
+        if (eventosPlanejados[ind][2] != null && lastDayFound == false){
+            lastDayFound = true;
+            UDP = ind-1;
+        }
+    }
     for (let i = 0; i < eventosPlanejados.length; i++) {
         if (eventosPlanejados[i][2] != null
         && eventosPlanejados[i][2].length > 0){
-            var diaSemana = `
-            <button id="${eventosPlanejados[i][0]}" class="ButtonBox eventPlanned" onclick="toggleInfo(id)">
-                <span id="${eventosPlanejados[i][0]}Text">${eventosPlanejados[i][0]}-Feira (${eventosPlanejados[i][1]})</span>
-                <div id="${eventosPlanejados[i][0]}Info" class="info">
-                </div>
-            </button>
-            `;
+            var diaSemana;
+            if (i != UDP){
+                diaSemana = `
+                <button id="${eventosPlanejados[i][0]}" class="ButtonBox eventPlanned" onclick="toggleInfo(id)">
+                    <span id="${eventosPlanejados[i][0]}Text">${eventosPlanejados[i][0]}-Feira (${eventosPlanejados[i][1]})</span>
+                    <div id="${eventosPlanejados[i][0]}Info" class="info">
+                    </div>
+                </button>
+                `;
+            }
+            else{
+                diaSemana = `
+                <button id="${eventosPlanejados[i][0]}" class="LastButtonBox eventPlanned" onclick="toggleInfo(id)">
+                    <span id="${eventosPlanejados[i][0]}Text">${eventosPlanejados[i][0]}-Feira (${eventosPlanejados[i][1]})</span>
+                    <div id="${eventosPlanejados[i][0]}Info" class="info">
+                    </div>
+                </button>
+                `;
+            }
             document.getElementById("RedBox").insertAdjacentHTML('beforeend', diaSemana);
-
+            var uniqueCd = 0;
             for (let i2 = 0; i2 < eventosPlanejados[i].length; i2++) {
                 if (Array.isArray(eventosPlanejados[i][i2])){
                     for (let i3 = 0; i3 < 4; i3++) {
-                        if (eventosPlanejados[i][i2][i3] == null){
-                            eventosPlanejados[i][i2][i3] = "Nada";
+                        if (eventosPlanejados[i][i2][i3] == null && i3 != 0){
+                            eventosPlanejados[i][i2][i3] = "...";
                         }
                     }
+                    
                     var eventoDescrito = `
                     <div id="inside1">
                         <div class="box">
-                            <div class="info-item">
-                                <img src="css/media/feliz.png" id="IconI">
-                                <span>${eventosPlanejados[i][i2][0]}</span>
+                            <div class="BoxP-info" id="${eventosPlanejados[i][0]+uniqueCd}Pal">
                             </div>
                             <div class="info-item">
                                 <img src="css/media/local.png" id="IconI">
@@ -94,6 +198,32 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
                     `;
                     document.getElementById(eventosPlanejados[i][0]+"Info").insertAdjacentHTML('beforeend', eventoDescrito);
+
+                    for (let i4 = 0; i4 < eventosPlanejados[i][i2][0].length; i4++) {
+                        for (let i5 = 0; i5 < eventosPlanejados[i][i2][0][i4].length; i5++) {
+                            if (eventosPlanejados[i][i2][0][i4][0] == null && i5 == 0){ // nome texto de PlaceHolder
+                                eventosPlanejados[i][i2][0][i4][0] = "Nome";
+                            }
+                            else if (eventosPlanejados[i][i2][0][i4][1] == null && i5 == 1){ // foto texto de PlaceHolder
+                                eventosPlanejados[i][i2][0][i4][1] = "css/media/feliz.png";
+                            }
+                            else if (eventosPlanejados[i][i2][0][i4][2] == null && i5 == 2){ // foto texto de PlaceHolder
+                                eventosPlanejados[i][i2][0][i4][2] = "Nada";
+                            }
+                        }
+                        var nmPalestrante = `
+                                <div class="P-info">
+                                        <img src="${eventosPlanejados[i][i2][0][i4][1]}" id="Ppic">
+                                        <span>${eventosPlanejados[i][i2][0][i4][0]}</span>
+                                        <div class="info-item">
+                                        <img src="css/media/profissao.png" id="IconI">
+                                        <span>${eventosPlanejados[i][i2][0][i4][2]}</span>
+                                    </div>
+                                </div>
+                            `;
+                            document.getElementById(eventosPlanejados[i][0]+uniqueCd+"Pal").insertAdjacentHTML('beforeend', nmPalestrante);
+                    }
+                    uniqueCd += 1;
                 }
             }
         }
