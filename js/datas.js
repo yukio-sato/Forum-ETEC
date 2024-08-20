@@ -1,3 +1,4 @@
+/////////////////////  Função de aparecer as informações  /////////////////////////////
 function toggleInfo(buttonId) {
     const info = document.querySelector(`#${buttonId} .info`);
     if (info.classList.contains('show')) {
@@ -7,25 +8,26 @@ function toggleInfo(buttonId) {
     }
 }
 
+/////////////////////  Valores de eventos agendados  /////////////////////////////
 var eventosPlanejados = [
     [ "Segunda", "09/09", ///////////////////////////////////// Segunda ////////////////////////////////////////
-        [ // Informações do Evento abaixo: /////////////////// Evento
-            [ // pessoas
-                [ // informações
-                    "Teste", // nome
-                    "css/media/email.png", // imagem
-                    null, // profissão
+        [ // Evento
+            [ // Pessoas
+                [ // Informações
+                    "Teste", // Nome
+                    "css/media/email.png", // Imagem
+                    null, // Profissão
                 ],
-                [ // informações
-                    null, // nome
-                    null, // imagem
-                    null, // profissão
+                [ // Informações
+                    null, // Nome
+                    null, // Imagem
+                    null, // Profissão
                 ],
             ],
-            "Auditório Principal (Quadra)",
-            "Período noturno",
-            "Avertura Solene e palestra global.",
-        ],
+            "Auditório Principal (Quadra)", // Local
+            "Período noturno", // Horário
+            "Avertura Solene e palestra global.", // Descrição
+        ]
     ],
 
     [ "Terça", "10/09", ///////////////////////////////////// Terça ////////////////////////////////////////
@@ -123,16 +125,6 @@ var eventosPlanejados = [
 
     [ "Sexta", "13/09", ///////////////////////////////////// Sexta ////////////////////////////////////////
         [ // Informações do Evento abaixo: /////////////////// Evento
-            [ // pessoas
-                [ // informações
-                    null, // nome
-                    null, // imagem
-                    null, // profissão
-                ],
-            ],
-            null,
-            null,
-            null,
         ],
     ],
 ];
@@ -182,17 +174,18 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="box">
                             <div class="BoxP-info" id="${eventosPlanejados[i][0]+uniqueCd}Pal">
                             </div>
+                            <hr style="width: 99%;margin:0">
+                            <div class="info-item">
+                                <img src="css/media/tema.png" id="IconI">
+                                <h3 title="Tema: ${eventosPlanejados[i][i2][3]}">${eventosPlanejados[i][i2][3]}</h3>
+                            </div>
                             <div class="info-item">
                                 <img src="css/media/local.png" id="IconI">
-                                <span>${eventosPlanejados[i][i2][1]}</span>
+                                <span title="Local: ${eventosPlanejados[i][i2][1]}">${eventosPlanejados[i][i2][1]}</span>
                             </div>
                             <div class="info-item">
                                 <img src="css/media/relogio.png" id="IconI">
-                                <span>${eventosPlanejados[i][i2][2]}</span>
-                            </div>
-                            <div class="info-item">
-                                <img src="css/media/tema.png" id="IconI">
-                                <h3>${eventosPlanejados[i][i2][3]}</h3>
+                                <span title="Horário: ${eventosPlanejados[i][i2][2]}">${eventosPlanejados[i][i2][2]}</span>
                             </div>
                         </div>
                     </div>
@@ -214,10 +207,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         var nmPalestrante = `
                                 <div class="P-info">
                                         <img src="${eventosPlanejados[i][i2][0][i4][1]}" id="Ppic">
-                                        <span>${eventosPlanejados[i][i2][0][i4][0]}</span>
+                                        <span title="Nome: ${eventosPlanejados[i][i2][0][i4][0]}">${eventosPlanejados[i][i2][0][i4][0]}</span>
                                         <div class="info-item">
                                         <img src="css/media/profissao.png" id="IconI">
-                                        <span>${eventosPlanejados[i][i2][0][i4][2]}</span>
+                                        <span title="Profissão: ${eventosPlanejados[i][i2][0][i4][2]}">${eventosPlanejados[i][i2][0][i4][2]}</span>
                                     </div>
                                 </div>
                             `;
