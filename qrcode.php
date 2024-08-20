@@ -27,7 +27,7 @@
     <!-- CABEÇALHO -->
     <div class="header">
         <a href="index.html"> <img src="css/media/voltar.png" id="back" alt="Voltar"></a>
-        <img src="css/media/flogo2.jpg" id="logo" alt="Logo ETEC Adolpho Berezin" width="760px">
+        <img src="css/media/flogo2.jpg" id="logo" alt="Logo ETEC Adolpho Berezin" width="75%">
         <img src="css/media/empty.png" id="back">
     </div>
 

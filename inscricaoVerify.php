@@ -22,7 +22,7 @@
 <body>
     <div class="header">
         <a href="index.html"> <img src="css/media/voltar.png" id="back" alt="Voltar"></a>
-        <img src="css/media/flogo2.jpg" id="logo" alt="Logo ETEC Adolpho Berezin" width="760px">
+        <img src="css/media/flogo2.jpg" id="logo" alt="Logo ETEC Adolpho Berezin" width="75%">
         <img src="css/media/empty.png" id="back">
     </div>
 
@@ -91,8 +91,9 @@
                 <!-- INFORMAÇÕES -->
                 <br>
                 <br>
-                <h1>Email Enviado</h1>
-                <p onclick="window.location.reload();" style="border-bottom: black solid 1px;width:20%;margin: auto">Reenviar Email</p>
+                <div id="center">
+                    <img src="css/media/emailyes.png" width="100px">
+                    <p>E-Mail enviado com sucesso!</p>
                 </div>
             ';
         }else {

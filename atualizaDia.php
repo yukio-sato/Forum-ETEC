@@ -22,7 +22,7 @@
     <!-- CABEÇALHO -->
     <div class="header">
         <img src="css/media/empty.png" id="back">
-        <img src="css/media/flogo2.jpg" id="logo" alt="Logo ETEC Adolpho Berezin" width="760px">
+        <img src="css/media/flogo2.jpg" id="logo" alt="Logo ETEC Adolpho Berezin" width="75%">
         <img src="css/media/empty.png" id="back">
     </div>
     <div class="content">
