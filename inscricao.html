@@ -17,6 +17,7 @@
 
     <!-- SCRIPT -->
     <script src="js/cpfFormat.js"></script>
+    <script src="js/entrarComo.js"></script>
 
     <title>Fórum Tecnológico Interdisciplinar</title>
 </head>
@@ -37,15 +38,39 @@
         <!-- CAIXAS DE TEXTO -->
         <form class="container form" method="post" action="inscricaoVerify.php">
             <input placeholder="Nome" id="nome" name="nm" type="text" class="ImputBox validate" maxlength="45" required>
-            <input placeholder="E-Mail" id="email" name="email" type="email" class="ImputBox validate" maxlength="45" required>
-            <input placeholder="CPF (Somente números)" id="cpf" name="cpf" type="text" class="ImputBox validate" minlength="13" maxlength="14" required>
+            <input placeholder="E-Mail" id="email" name="email" type="email" class="ImputBox validate" maxlength="45"
+                required>
+            <input placeholder="CPF (Somente números)" id="cpf" name="cpf" type="text" class="ImputBox validate"
+                minlength="13" maxlength="14" required>
+                <span id="invalidando" style="color: red;font-weight: bolder;" hidden="true">CPF Inválido</span>
             <input type="text" id="cpfVerify" required hidden>
             <!-- CAIXA DE SELEÇÃO -->
             <select id="SelectPC" class="ImputBox validate" name="selectPC" required>
                 <option value="" selected disabled hidden>Entrar como</option>
-                <option value="VIS">Visitante</option>
+                <option value="CON">Convidado</option>
                 <option value="ALU">Aluno</option>
-                <option value="PAL">Palestrante</option>
+                <!-- <option value="PAL">Palestrante</option> -->
+            </select>
+            <!-- CAIXA DE SELEÇÃO QUE APARECE QUANDO CLICA EM SOU ALUNO -->
+            <p id="txtCurso" hidden="true">Sou do curso de:</p>
+            <select id="selectCurso" name="selectCurso" class="ImputBox validate" hidden="true">
+                <option value="" selected disabled hidden>Curso</option>
+                <option value="Administração">Administração</option>
+                <option value="Edificações">Edificações</option>
+                <option value="Informática">Informática</option>
+                <option value="Enfermagem">Enfermagem</option>
+                <option value="Turismo">Turismo</option>
+            </select>
+            <!-- CAIXA DE SELEÇÃO  QUE APARECE QUANDO CLICA EM SOU CONVIDADO
+            Nota: vários botões 
+            -->
+            <p id="txtDia" hidden="true">Quero ir nos dias:</p>
+            <select id="selectDia" name="selectDia" class="ImputBox validate" hidden="true">
+                <option value="" selected disabled hidden>Dia</option>
+                <option value="2024-09-09">(09/09) Descrição Breve</option>
+                <option value="2024-09-01">(10/09) Descrição Breve</option>
+                <option value="2024-09-11">(11/09) Descrição Breve</option>
+                <option value="2024-09-12">(12/09) Descrição Breve</option>
             </select>
 
             <button class="btn" style="width: 50%;margin-left: 25%;margin-right: 25%;">Inscrever-se</button>
@@ -56,7 +81,7 @@
         <!-- BANNER EVENTO -->
         <div class="slide-container">
             <div class="slide">
-                <iframe src="css/media/ningning.mp4" class="banner" frameborder="0" allow="autoplay; encrypted-media"
+                <iframe src="css/media/FórumEtec2023.mp4" class="banner" frameborder="0" allow="autoplay; encrypted-media"
                     allowfullscreen></iframe>
                 <img src="css/media/bannerexemplo.png" class="banner" alt="Banner do evento">
                 <img src="css/media/bannerexemplo2.png" class="banner" alt="Banner do evento 2">

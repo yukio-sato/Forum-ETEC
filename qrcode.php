@@ -33,7 +33,7 @@
 
     <div class="container">
         <!-- INFORMAÇÕES -->
-        <p>Inscrição conluída, esse é seu Codigo QR de acesso ao evento <br>Tenha-o em mãos na portaria!</p>
+        <p>Inscrição concluída, esse é seu Codigo QR de acesso ao evento <br>Tenha-o em mãos na portaria!</p>
 
         <div id="RedBox">
             <?php
@@ -94,16 +94,45 @@
                 $userEmail = $_GET['email'];
                 $userCPF = $_GET['cpf'];
                 $identificador = $_GET['enter'];
-    
+                $curso = $_GET['curso']; //para Alunos
+                $dia = $_GET['dia']; // para Convidados
+
                 $userInfo = "";
                 
+                $sqlOptional = "";
+                if ($curso != "Curso"){
+                    $sqlOptional = "SELECT * FROM tb_evento WHERE nm_evento = '".$curso."';";
+                    $resultOptional = $conn->query($sqlOptional);
+                }
+                elseif ($dia != "Dia"){
+                    $sqlOptional = "SELECT * FROM tb_evento WHERE dt_evento = '".$dia."';";
+                    $resultOptional = $conn->query($sqlOptional);
+                }
+
                 $sql = "INSERT INTO tb_pessoa
-                VALUES ('".$userCPF."','".$nome."','".$userEmail."','".$identificador."',0,1)"; // o 1 é fk da tb mude
+                VALUES ('".$userCPF."','".$nome."','".$userEmail."','".$identificador."',0)";
     
                 $sqlChecker = "SELECT * FROM tb_pessoa WHERE cpf_pessoa = '".$userCPF."';";
                 $resultCheck = $conn->query($sqlChecker);
                 if ($resultCheck->num_rows <= 0){
                     $result = $conn->query($sql);
+                    while($row = $resultOptional->fetch_assoc()) {
+                        $sql = "INSERT INTO tb_cadastrado
+                        VALUES (null,'$userCPF',".$row["cd_evento"].")";
+    
+                        $sqlChecker2 = "SELECT count(cd_cadastrado) as 'contagem' FROM tb_cadastrado Where fk_cd_evento = ".$row['cd_evento']."";
+                        $resultChecker2 = $conn->query($sqlChecker2);
+    
+                        $sqlChecker3 = "SELECT nr_limite FROM tb_evento Where cd_evento = ".$row['cd_evento']."";
+                        $resultChecker3 = $conn->query($sqlChecker3);
+                        while($row2 = $resultChecker3->fetch_assoc()) {
+                            while($row3 = $resultChecker2->fetch_assoc()) {
+                                if ($row3['contagem'] < $row2['nr_limite']){
+                                    $result = $conn->query($sql);
+                                }
+                            }
+                        }
+                    }
                 }
                 $userInfo = "https://forumetecab-frcjhtbde8dbfed0.brazilsouth-01.azurewebsites.net/qrCodeEscaneado.php?cpf='.$userCPF.'";
                 //$userInfo = "Nome: ".$nome." | Email: ".$userEmail." | CPF: ".$userCPF." | Entrar como: ".$identificador;

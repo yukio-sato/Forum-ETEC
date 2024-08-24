@@ -14,9 +14,6 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
-    <!-- SCRIPT -->
-    <script src="js/cpfFormat.js"></script>
-
     <title>Fórum Tecnológico Interdisciplinar</title>
 </head>
 <body>
@@ -37,6 +34,14 @@
     $email = $_POST['email'];
     $cpf = $_POST['cpf'];
     $identifier = $_POST['selectPC'];
+    $selectedCurso = "";
+    $selectedDia = "";
+    if ($identifier == "ALU"){
+        $selectedCurso = $_POST['selectCurso'];
+    }
+    else if ($identifier == "CON"){
+        $selectedDia = $_POST['selectDia'];
+    }
 
     /*session_start();
     $_SESSION["userNM"] = $userNM;
@@ -66,8 +71,10 @@
         $mail->Password = 'ztlb eecy tbef xpyk'; // senha codificada
         // forumtecinter@gmail.com
         // ztlb eecy tbef xpyk
+
         // yukioutiyamasato@gmail.com
         // kxpc wvxn krzl ntfa
+
         // jose.carlos.s.barbosa@gmail.com
         // pmva ospv bknx ooal
         $mail->Port = '587';
@@ -76,12 +83,29 @@
         $mail->addAddress($email); // email redirecionado
     
         $mail->isHTML(true);
-        $mail->Subject = 'Teste de Envio de Email'; // titulo do email
+        $mail->Subject = 'Link para QR Code'; // titulo do email
         $mail->Body = '
-        <h1>Olá <strong>'.$userNM.'<strong>!</h1>
-        <h3>Segue abaixo o Link para o QR Code</h3>
-        <hr>
-        <a href="https://forumetecab-frcjhtbde8dbfed0.brazilsouth-01.azurewebsites.net/qrcode.php?nome='.$userNM.'&email='.$email.'&cpf='.$cpf.'&enter='.$identifier.'">Clique aqui!</a>
+            <div class="container">
+                <div style="width:100%;text-align: center;">
+                    <h3 style="text-align: center;text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.13);font-family: "Poppins";font-size: 16px;">Olá '.ucfirst($userNM).'! Sua inscrição foi concluida com sucesso <br>
+                        Aqui esta o link para acessar seu Codigo QR caso queira mostrar ou baixar
+                    </h3>
+                    <br>
+                    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://forumetecab-frcjhtbde8dbfed0.brazilsouth-01.azurewebsites.net/qrCodeEscaneado.php?cpf='.$cpf.'&size=35%x35%">
+                    <br>
+                    <br>
+                    <a href="https://forumetecab-frcjhtbde8dbfed0.brazilsouth-01.azurewebsites.net/qrcode.php?nome='.$userNM.'&email='.$email.'&cpf='.$cpf.'&enter='.$identifier.'&curso='.$selectedCurso.'&dia='.$selectedDia.'">
+                    <button style="width: 50%;margin-left: 25%;margin-right: 25%;background: linear-gradient(to right,rgba(211, 73, 73, 1), rgba(145, 17, 16, 1));box-shadow: 0px 0px 8px rgba(0, 0, 0, 0,178);border-radius: 50px;padding: 10px 30px;margin-bottom: 20px;font-size: 15px;cursor: pointer;color: white;border: 0px;">Meu Codigo QR</button>
+                    </a>
+                </div>
+            </div>
+            <div style="width:100%;text-align: center;">
+                <p style="text-align: center;text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.13); font-size: 16px;">Site desenvolvido pelos alunos
+                    <br><a href="https://github.com/niButera" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.13); color:rgba(145, 17, 16, 1); text-decoration: none; font-weight: bold; font-size: 16px;">Nicolas</a> e <a href="https://github.com/yukio-sato" style="text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.13); color:rgba(145, 17, 16, 1); text-decoration: none; font-weight: bold; font-size: 16px;">Yukio</a>
+                    3i3 -
+                    1º Semestre - 2024
+                </p>
+            </div>
         '; // descrição
         $mail->AltBody = 'Chegou mensagem'; // texto para cegos?
     
@@ -91,10 +115,11 @@
                 <!-- INFORMAÇÕES -->
                 <br>
                 <br>
-                <div id="center">
-                    <img src="css/media/emailyes.png" width="100px">
-                    <p>E-Mail enviado com sucesso!</p>
-                </div>
+            <div id="center">
+                <img src="css/media/emailyes.png" width="100px">
+                <p>E-Mail enviado com sucesso!</p>
+                <a onclick="window.location.reload()">Reenviar E-Mail</a>
+            </div>
             ';
         }else {
             echo '

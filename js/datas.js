@@ -11,6 +11,7 @@ function toggleInfo(buttonId) {
 /////////////////////  Valores de eventos agendados  /////////////////////////////
 var eventosPlanejados = [
     [ "Segunda", "09/09", ///////////////////////////////////// Segunda ////////////////////////////////////////
+        
         [ // Evento
             [ // Pessoas
                 [ // Informações
@@ -28,9 +29,11 @@ var eventosPlanejados = [
             "Período noturno", // Horário
             "Avertura Solene e palestra global.", // Descrição
         ]
+
     ],
 
     [ "Terça", "10/09", ///////////////////////////////////// Terça ////////////////////////////////////////
+
         [ // Informações do Evento abaixo: /////////////////// Evento
             [ // pessoas
                 [ // informações
@@ -43,6 +46,7 @@ var eventosPlanejados = [
             "Período tarde",
             "Enfermagem",
         ],
+
         [ // Informações do Evento abaixo: /////////////////// Evento
             [ // pessoas
                 [ // informações
@@ -55,6 +59,7 @@ var eventosPlanejados = [
             "Período noturno",
             "Edificações / Administração",
         ],
+
         [ // Informações do Evento abaixo: /////////////////// Evento
             [ // pessoas
                 [ // informações
@@ -67,9 +72,11 @@ var eventosPlanejados = [
             null,
             "Informática",
         ],
+
     ],
 
     [ "Quarta", "11/09", ///////////////////////////////////// Quarta ////////////////////////////////////////
+
         [ // Informações do Evento abaixo: /////////////////// Evento
             [ // pessoas
                 [ // informações
@@ -82,6 +89,7 @@ var eventosPlanejados = [
             "Período tarde",
             "Ensino Médio",
         ],
+
         [ // Informações do Evento abaixo: /////////////////// Evento
             [ // pessoas
                 [ // informações
@@ -94,6 +102,7 @@ var eventosPlanejados = [
             "Período noturno",
             "Turismo / Informática",
         ],
+
         [ // Informações do Evento abaixo: /////////////////// Evento
             [ // pessoas
                 [ // informações
@@ -106,9 +115,11 @@ var eventosPlanejados = [
             null,
             "Edificações",
         ],
+
     ],
 
     [ "Quinta", "12/09", ///////////////////////////////////// Quinta ////////////////////////////////////////
+
         [ // Informações do Evento abaixo: /////////////////// Evento
             [ // pessoas
                 [ // informações
@@ -121,11 +132,14 @@ var eventosPlanejados = [
             null,
             "Administração",
         ],
+
     ],
 
     [ "Sexta", "13/09", ///////////////////////////////////// Sexta ////////////////////////////////////////
+
         [ // Informações do Evento abaixo: /////////////////// Evento
         ],
+
     ],
 ];
 document.addEventListener("DOMContentLoaded", () => {

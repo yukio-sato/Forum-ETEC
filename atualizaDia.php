@@ -44,7 +44,8 @@
                 echo '<script>window.location.href = "atualizado.html"</script>';
             }
             else{
-                echo "<p>Houve um erro em atualizar o dia.<p>";
+                echo "<p>Houve um erro em atualizar o dia.</p>";
+                echo "UPDATE tb_pessoa SET dia_pessoa = dia_pessoa + 1 WHERE cpf_pessoa = '".$userCPF."' and dia_pessoa < 3;";
             }
         ?>
     </div>

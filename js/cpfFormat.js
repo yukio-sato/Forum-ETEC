@@ -1,5 +1,16 @@
 document.addEventListener("DOMContentLoaded", () => {
 
+    function hideElement(obj){
+        if (document.getElementById(obj).getAttribute("hidden") == null){
+            document.getElementById(obj).setAttribute("hidden","true");
+        }
+    }
+
+    function showElement(obj){
+        if (document.getElementById(obj).getAttribute("hidden")){
+            document.getElementById(obj).removeAttribute("hidden");
+        }
+    }
 
     var cpfInput = document.getElementById("cpf"); // here is the CPF ID of the input
 
@@ -10,20 +21,21 @@ document.addEventListener("DOMContentLoaded", () => {
         var partOne = numeric.slice(0, 3) + ".";
         var partTwo = numeric.slice(3, 6) + ".";
         var partThree = numeric.slice(6, 9) + "-";
+        var formatCPF = "";
     
         if (cpfLength < 4) { 
             cpfInput.value = numeric;
         } else if (cpfLength >= 4 && cpfLength < 7) {
-            var formatCPF = partOne + numeric.slice(3);
+            formatCPF = partOne + numeric.slice(3);
             cpfInput.value = formatCPF;
         } else if (cpfLength >= 7 && cpfLength < 10) {
-            var formatCPF = partOne + partTwo + numeric.slice(6);
+            formatCPF = partOne + partTwo + numeric.slice(6);
             cpfInput.value = formatCPF;
         } else if (cpfLength >= 10 && cpfLength < 12) {
-            var formatCPF = partOne + partTwo + partThree + numeric.slice(9);
+            formatCPF = partOne + partTwo + partThree + numeric.slice(9);
             cpfInput.value = formatCPF;
         } else if (cpfLength >= 12) {
-            var formatCPF = partOne + partTwo + partThree + numeric.slice(9, 11);
+            formatCPF = partOne + partTwo + partThree + numeric.slice(9, 11);
             cpfInput.value = formatCPF;
         }
 
@@ -62,8 +74,14 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         if (formatCPF.length == 14 && cpfValidy == true){
             document.getElementById("cpfVerify").value = cpfInput;
-        } else{
+            hideElement("invalidando");
+        }
+        else if (formatCPF.length == 14 && cpfValidy == false){
+            showElement("invalidando");
+        }
+        else{
             document.getElementById("cpfVerify").value = "";
+            hideElement("invalidando");
         }
     });
 });

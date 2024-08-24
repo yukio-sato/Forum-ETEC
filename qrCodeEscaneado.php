@@ -39,8 +39,15 @@
             $sqlChecker = "SELECT * FROM tb_pessoa WHERE cpf_pessoa = '".$userCPF."';";
             $resultCheck = $conn->query($sqlChecker);
 
+            $sqlChecker2 = "SELECT * FROM tb_evento as e, tb_cadastrado as c WHERE e.cd_evento = c.fk_cd_evento and c.fk_cpf_pessoa = '".$userCPF."';";
+            $resultCheck2 = $conn->query($sqlChecker2);
 
                 if ($resultCheck->num_rows > 0){
+                    while($row2 = $resultCheck2->fetch_assoc()) {
+                        echo '
+                        <p>Curso: '.$row2["nm_evento"].' ('.$row2['dt_evento'].')</p>
+                        ';
+                    }
                     while($row = $resultCheck->fetch_assoc()) {
                         echo '
                         <p>Nome: '.$row["nm_pessoa"].'</p>
@@ -48,7 +55,7 @@
                         <p>CPF: '.$row["cpf_pessoa"].'</p>
                         <p>Entrou como: '.$row["id_pessoa"].'</p>
                         <p>Contador de Dia (Atual): '.($row["dia_pessoa"]+1).'</p>
-                        <a href="atualizaDia.php?cpf='.$userCPF.'" style="background-color:red;color:white;border: solid 1px red;border-radius: 10px">Contar Dia</a>
+                        <a href="atualizaDia.php?cpf='.$userCPF.'" style="background-color:red;color:white;border: solid 1px red;border-radius: 10px;box-shadow: red 0px 0px 2px 10px;">Contar Dia</a>
                         ';
                     }
                 }
