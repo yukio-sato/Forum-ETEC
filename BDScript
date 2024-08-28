@@ -50,5 +50,6 @@ select * from tb_cadastrado;
 #select * from tb_pessoa where fk_cd_evento = 0; altere o 0 para o código do evento
 
 #Teste
-#http://localhost/Forum-ETEC/qrcode.php?nome=yukio&email=yukioutiyamasato@gmail.com&cpf=239.887.348-02&enter=ALU&curso=Informática&dia=
-#http://localhost/Forum-ETEC/qrCodeEscaneado.php?cpf=239.887.348-02
+#http://localhost/Forum-ETEC/qrcode.php?nome=yukio&email=yukioutiyamasato@gmail.com&cpf=239.887.348-02&enter=ALU&curso=Informática&dia=dia
+#http://localhost/Forum-ETEC/senha.php?cpf=239.887.348-02
+#http://localhost/Forum-ETEC/qrCodeEscaneado.php

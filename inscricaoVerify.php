@@ -34,8 +34,8 @@
     $email = $_POST['email'];
     $cpf = $_POST['cpf'];
     $identifier = $_POST['selectPC'];
-    $selectedCurso = "";
-    $selectedDia = "";
+    $selectedCurso = "Curso";
+    $selectedDia = "Dia";
     if ($identifier == "ALU"){
         $selectedCurso = $_POST['selectCurso'];
     }
@@ -63,6 +63,9 @@
     */
 
     try {
+        $test = "info=$userNM|$email|$cpf|$identifier|$selectedCurso|$selectedDia";
+        $userInfo = "http://localhost/Forum-Etec/qrcodeEmail.php?$test";
+        $qrMachine = "https://api.qrserver.com/v1/create-qr-code/?data=$userInfo&size=35%x35%";
         //$mail->SMTPDebug = SMTP::DEBUG_SERVER;
         $mail->isSMTP();
         $mail->Host = 'smtp.gmail.com';
@@ -91,10 +94,10 @@
                         Aqui esta o link para acessar seu Codigo QR caso queira mostrar ou baixar
                     </h3>
                     <br>
-                    <img src="https://api.qrserver.com/v1/create-qr-code/?data=https://forumetecab-frcjhtbde8dbfed0.brazilsouth-01.azurewebsites.net/qrCodeEscaneado.php?cpf='.$cpf.'&size=35%x35%">
+                    <img id="qr" src="'.$qrMachine.'">
                     <br>
                     <br>
-                    <a href="https://forumetecab-frcjhtbde8dbfed0.brazilsouth-01.azurewebsites.net/qrcode.php?nome='.$userNM.'&email='.$email.'&cpf='.$cpf.'&enter='.$identifier.'&curso='.$selectedCurso.'&dia='.$selectedDia.'">
+                    <a href="http://localhost/Forum-Etec/qrcode.php?nome='.$userNM.'&email='.$email.'&cpf='.$cpf.'&enter='.$identifier.'&curso='.$selectedCurso.'&dia='.$selectedDia.'">
                     <button style="width: 50%;margin-left: 25%;margin-right: 25%;background: linear-gradient(to right,rgba(211, 73, 73, 1), rgba(145, 17, 16, 1));box-shadow: 0px 0px 8px rgba(0, 0, 0, 0,178);border-radius: 50px;padding: 10px 30px;margin-bottom: 20px;font-size: 15px;cursor: pointer;color: white;border: 0px;">Meu Codigo QR</button>
                     </a>
                 </div>

@@ -41,4 +41,73 @@ document.addEventListener("DOMContentLoaded", ()=> {
             hideElement("selectDia");
         }
     });
+
+    document.getElementById("dia1").addEventListener("change", ()=>{
+        var dt = "2024-09-09";
+        if (document.getElementById("allDay").value.search(dt) < 0){
+            document.getElementById("allDay").value += ","+dt;
+        }
+        else if (document.getElementById("allDay").value.search(dt) >= 0){
+            document.getElementById("allDay").value = document.getElementById("allDay").value.replace(dt,"");
+        }
+        if (document.getElementById("allDay").value[0] == ","){
+            document.getElementById("allDay").value = document.getElementById("allDay").value.substring(1)
+        }
+        if (document.getElementById("allDay").value.length > 0 && document.getElementById("allDay").value[document.getElementById("allDay").value.length-1] == ","){
+            document.getElementById("allDay").value = document.getElementById("allDay").value.substring(0,document.getElementById("allDay").value.length-1)
+        }
+        document.getElementById("allDay").value = document.getElementById("allDay").value.replace(",,",",");
+    });
+
+    document.getElementById("dia2").addEventListener("change", ()=>{
+        var dt = "2024-09-10";
+        if (document.getElementById("allDay").value.search(dt) < 0){
+            document.getElementById("allDay").value += ","+dt;
+        }
+        else if (document.getElementById("allDay").value.search(dt) >= 0){
+            document.getElementById("allDay").value = document.getElementById("allDay").value.replace(dt,"");
+        }
+        if (document.getElementById("allDay").value[0] == ","){
+            document.getElementById("allDay").value = document.getElementById("allDay").value.substring(1)
+        }
+        if (document.getElementById("allDay").value.length > 0 && document.getElementById("allDay").value[document.getElementById("allDay").value.length-1] == ","){
+            document.getElementById("allDay").value = document.getElementById("allDay").value.substring(0,document.getElementById("allDay").value.length-1)
+        }
+        document.getElementById("allDay").value = document.getElementById("allDay").value.replace(",,",",");
+    });
+
+    document.getElementById("dia3").addEventListener("change", ()=>{
+        var dt = "2024-09-11";
+        if (document.getElementById("allDay").value.search(dt) < 0){
+            document.getElementById("allDay").value += ","+dt;
+        }
+        else if (document.getElementById("allDay").value.search(dt) >= 0){
+            document.getElementById("allDay").value = document.getElementById("allDay").value.replace(dt,"");
+        }
+        if (document.getElementById("allDay").value[0] == ","){
+            document.getElementById("allDay").value = document.getElementById("allDay").value.substring(1)
+        }
+        if (document.getElementById("allDay").value.length > 0 && document.getElementById("allDay").value[document.getElementById("allDay").value.length-1] == ","){
+            document.getElementById("allDay").value = document.getElementById("allDay").value.substring(0,document.getElementById("allDay").value.length-1)
+        }
+        document.getElementById("allDay").value = document.getElementById("allDay").value.replace(",,",",");
+    });
+
+    document.getElementById("dia4").addEventListener("change", ()=>{
+        var dt = "2024-09-12";
+        if (document.getElementById("allDay").value.search(dt) < 0){
+            document.getElementById("allDay").value += ","+dt;
+        }
+        else if (document.getElementById("allDay").value.search(dt) >= 0){
+            document.getElementById("allDay").value = document.getElementById("allDay").value.replace(dt,"");
+        }
+        if (document.getElementById("allDay").value[0] == ","){
+            document.getElementById("allDay").value = document.getElementById("allDay").value.substring(1)
+        }
+        if (document.getElementById("allDay").value.length > 0 && document.getElementById("allDay").value[document.getElementById("allDay").value.length-1] == ","){
+            document.getElementById("allDay").value = document.getElementById("allDay").value.substring(0,document.getElementById("allDay").value.length-1)
+        }
+        document.getElementById("allDay").value = document.getElementById("allDay").value.replace(",,",",");
+    });
+
 });

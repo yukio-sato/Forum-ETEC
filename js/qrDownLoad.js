@@ -1,4 +1,4 @@
-async function down(){
+async function down(nm,userInfo){
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF();
     //pdf.text(`test:`, 10, 10); // text on pdf
@@ -9,7 +9,8 @@ async function down(){
     const qrCodeDataUrl = qrCodeCanvas.toDataURL('image/png');
     */
 
-    pdf.addImage(`https://api.qrserver.com/v1/create-qr-code/?data=ETEC&size=100x100`, 'PNG', 0, 0, 100, 100); // the qr code itself
+    pdf.addImage(`https://api.qrserver.com/v1/create-qr-code/?data=${userInfo}&size=100x100`, 'PNG', 0, 0, 100, 100); // the qr code itself
+    pdf.text(`Nome: ${nm}`, 60, 20); // text on pdf
 
     pdf.save('qrcode.pdf'); // download in your device
 }

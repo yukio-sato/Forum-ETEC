@@ -65,13 +65,25 @@
             Nota: vários botões 
             -->
             <p id="txtDia" hidden="true">Quero ir nos dias:</p>
-            <select id="selectDia" name="selectDia" class="ImputBox validate" hidden="true">
-                <option value="" selected disabled hidden>Dia</option>
-                <option value="2024-09-09">(09/09) Descrição Breve</option>
-                <option value="2024-09-01">(10/09) Descrição Breve</option>
-                <option value="2024-09-11">(11/09) Descrição Breve</option>
-                <option value="2024-09-12">(12/09) Descrição Breve</option>
-            </select>
+            <div id="selectDia" hidden="true">
+                <input type="text" id="allDay" name="selectDia" value="" hidden required>
+                <div id="days">
+                    <input type="checkbox" id="dia1">
+                    <p>(09/09) Descriçao Breve</p>
+                </div>
+                <div id="days">
+                    <input type="checkbox" id="dia2">
+                    <p>(10/09) Descriçao Breve</p>
+                </div>
+                <div id="days">
+                    <input type="checkbox" id="dia3">
+                    <p>(11/09) Descriçao Breve</p>
+                </div>
+                <div id="days">
+                    <input type="checkbox" id="dia4">
+                    <p>(12/09) Descriçao Breve</p>
+                </div>
+            </div>
 
             <button class="btn" style="width: 50%;margin-left: 25%;margin-right: 25%;">Inscrever-se</button>
         </form>
