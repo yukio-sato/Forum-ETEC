@@ -76,6 +76,13 @@ input::placeholder {
     background-size: 25px;
 }
 
+#Rlt {
+    background-image: url('media/relatorio.png');
+    background-position: 15px center;
+    background-repeat: no-repeat; 
+    background-size: 25px;
+}
+
 #Dwld{
     background-image: url('media/download.png');
     background-position: 15px center;

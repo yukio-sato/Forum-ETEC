@@ -43,33 +43,26 @@
                 $first = false;
                 $cursos = "";
                 $iCaseiro = 1;
+                $iPrimo = 1; // não sendo primo!
 
                 while($row = $resultCheck->fetch_assoc()) { // todos os resultados demonstrados do curso 
                     $sqlChecker2 = "SELECT * FROM tb_cadastrado WHERE fk_cpf_pessoa = '".$row['cpf_pessoa']."';"; // verificador se a pessoa já cadastrou ou não
                     $resultCheck2 = $conn->query($sqlChecker2);
-                    while($row2 = $resultCheck2->fetch_assoc()) { // todos os resultados demonstrados do curso 
-                        $sqlChecker3 = "SELECT * FROM tb_evento WHERE cd_evento = ".$row2['fk_cd_evento'].";"; // verificador se a pessoa já cadastrou ou não
-                        $resultCheck3 = $conn->query($sqlChecker3);
-                        
-                        while($row3 = $resultCheck3->fetch_assoc()) { // todos os resultados demonstrados do curso
-                            if ($cursos != ""){
-                                $cursos .= ",".$row3['nm_evento'];
-                            } else{
-                                $cursos = $row3['nm_evento'];
-                            }
-                        }
-
-                    }
                     echo "<br>";
                     print_r($cursos);
                     echo '<script>down(\''.$row['nm_pessoa'].'\',
                     \''.$row['id_pessoa'].'\',
-                    \''.$cursos.'\',
                     \'https://localhost/Forum-ETEC/senha.php?cpf='.$row['cpf_pessoa'].'\',
-                    \''.$iCaseiro.'\',
+                    \''.$iPrimo.'\',
                     \''.$iCaseiro.'\'
                     )</script>';
-                    $iCaseiro = $iCaseiro+1;
+                    if ($iPrimo == 3){
+                        $iPrimo = 1;
+                        $iCaseiro = $iCaseiro+1;
+                    }
+                    else{
+                        $iPrimo = $iPrimo+1;
+                    }
                 }
                 echo '<script>save()</script>';
             ?>
