@@ -94,71 +94,77 @@
                 $userEmail = $_GET['email'];
                 $userCPF = $_GET['cpf'];
                 $identificador = $_GET['enter'];
-                $curso = $_GET['curso']; //para Alunos
+                $cursoTb = $_GET['curso']; // para Alunos
+                $curso = explode(",",$_GET['curso']); // para Alunos
                 $dia = explode(",",$_GET['dia']); // para Convidados
                 $userInfo = "";
+            
                 
                 $userInfo = "https://localhost/Forum-ETEC/senha.php?cpf=$userCPF";
                 //$userInfo = "Nome: ".$nome." | Email: ".$userEmail." | CPF: ".$userCPF." | Entrar como: ".$identificador;
                 echo '<img src="https://api.qrserver.com/v1/create-qr-code/?data='.$userInfo.'&size=100%x100%" id="code">';
-                echo '<button id="Dwld" class="Btn3" onclick="down(\''.$nome.'\',\''.$userInfo.'\')">Baixar QrCode</button>';
+                echo '<button id="Dwld" class="Btn3" onclick="down(\''.$nome.'\',\''.$identificador.'\',\''.$cursoTb.'\',\''.$userInfo.'\')">Baixar QrCode</button>';
                 
                 $sqlOptional = "";
-                if ($curso != "Curso"){
-                    $sqlOptional = "SELECT * FROM tb_evento WHERE nm_evento = '".$curso."';"; // verifica todos os eventos relacionado ao curso
-                    $resultOptional = $conn->query($sqlOptional);
+                if ($curso[0] != "Curso"){
                     $sql = "INSERT INTO tb_pessoa
-                    VALUES ('".$userCPF."','".$nome."','".$userEmail."','".$identificador."',0)"; // comando que cadastra o usuário no site
+                    VALUES ('".$userCPF."','".$nome."','".$userEmail."','".$identificador."',0);"; // comando que cadastra o usuário no site
 
                     $sqlChecker = "SELECT * FROM tb_pessoa WHERE cpf_pessoa = '".$userCPF."';"; // verificador se a pessoa já cadastrou ou não
                     $resultCheck = $conn->query($sqlChecker);
                     
                     if ($resultCheck->num_rows <= 0){ // se não existir o login/cadastro
-                        $result = $conn->query($sql); // cadastra você no tb_pessoa
-                        while($row = $resultOptional->fetch_assoc()) { // todos os resultados demonstrados do curso
-                            $sql = "INSERT INTO tb_cadastrado
-                            VALUES (null,'$userCPF',".$row["cd_evento"].")"; // comando mysql que vai inserir o dado de cadastro do evento
-
-                            $sqlChecker2 = "SELECT count(cd_cadastrado) as 'contagem' FROM tb_cadastrado Where fk_cd_evento = ".$row['cd_evento']."";
-                            $resultChecker2 = $conn->query($sqlChecker2);
+                        mysqli_query($conn,$sql); // cadastra você no tb_pessoa
+                        for ($i=0; $i < count($curso); $i++) { // utilizado para cada dia selecionado
+                            $sqlOptional = "SELECT * FROM tb_evento WHERE nm_evento = '".$curso[$i]."';"; // verifica todos os eventos relacionado ao curso
+                            $resultOptional = $conn->query($sqlOptional);
+                            while($row = $resultOptional->fetch_assoc()) { // todos os resultados demonstrados do curso
+                                $sql = "INSERT INTO tb_cadastrado
+                                VALUES (null,'$userCPF',".$row["cd_evento"].");"; // comando mysql que vai inserir o dado de cadastro do evento
+    
+                                $sqlChecker2 = "SELECT count(cd_cadastrado) as 'contagem' FROM tb_cadastrado Where fk_cd_evento = ".$row['cd_evento'].";";
+                                $resultChecker2 = $conn->query($sqlChecker2);
                         
-                            $sqlChecker3 = "SELECT nr_limite FROM tb_evento Where cd_evento = ".$row['cd_evento']."";
-                            $resultChecker3 = $conn->query($sqlChecker3);
-
-                            while($row2 = $resultChecker3->fetch_assoc()) { // verifica a contagem de cadastros realizados neste evento
-                                while($row3 = $resultChecker2->fetch_assoc()) { // verifica o limite do evento
-                                    if ($row3['contagem'] < $row2['nr_limite']){ // real comparação entre os dois
-                                        $result = $conn->query($sql); // cadastra no evento se possivel
+                                $sqlChecker3 = "SELECT nr_limite FROM tb_evento Where cd_evento = ".$row['cd_evento'].";";
+                                $resultChecker3 = $conn->query($sqlChecker3);
+    
+                                while($row2 = $resultChecker3->fetch_assoc()) { // verifica a contagem de cadastros realizados neste evento
+                                    while($row3 = $resultChecker2->fetch_assoc()) { // verifica o limite do evento
+                                        if ($row3['contagem'] < $row2['nr_limite']){ // real comparação entre os dois
+                                            mysqli_query($conn,$sql); // cadastra você no evento se possivel
+                                        }
                                     }
                                 }
                             }
                         }
                     }
+                    
                 }
-                elseif ($dia != "Dia"){
+                elseif ($dia[0] != "Dia"){
 
                     $sql = "INSERT INTO tb_pessoa
-                    VALUES ('".$userCPF."','".$nome."','".$userEmail."','".$identificador."',0)"; // comando que cadastra o usuário no site
+                    VALUES ('".$userCPF."','".$nome."','".$userEmail."','".$identificador."',0);"; // comando que cadastra o usuário no site
+                    
                     $sqlChecker = "SELECT * FROM tb_pessoa WHERE cpf_pessoa = '".$userCPF."';"; // verificador se a pessoa já cadastrou ou não
                     $resultCheck = $conn->query($sqlChecker);
-                    
                     if ($resultCheck->num_rows <= 0){ // se não existir o login/cadastro
-                        $result = $conn->query($sql); // cadastra você no tb_pessoa
+                        mysqli_query($conn,$sql); // cadastra você no tb_pessoa
                         for ($i=0; $i < count($dia); $i++) { // utilizado para cada dia selecionado
                             $sqlOptional = "SELECT * FROM tb_evento WHERE dt_evento = '".$dia[$i]."';"; // recebe todos os eventos que possuem o mesmo dia selecionado
+    
                             $resultOptional = $conn->query($sqlOptional);
                             while($row = $resultOptional->fetch_assoc()) { // 'todos' os dias selecionados demonstrados
                                 $sql = "INSERT INTO tb_cadastrado
-                                VALUES (null,'$userCPF',".$row["cd_evento"].")"; // comando mysql que vai inserir o dado de cadastro do evento
-                                $sqlChecker2 = "SELECT count(cd_cadastrado) as 'contagem' FROM tb_cadastrado Where fk_cd_evento = ".$row['cd_evento']."";
+                                VALUES (null,'$userCPF',".$row["cd_evento"].");"; // comando mysql que vai inserir o dado de cadastro do evento
+                                $sqlChecker2 = "SELECT count(cd_cadastrado) as 'contagem' FROM tb_cadastrado Where fk_cd_evento = ".$row['cd_evento'].";";
                                 $resultChecker2 = $conn->query($sqlChecker2);
                             
-                                $sqlChecker3 = "SELECT nr_limite FROM tb_evento Where cd_evento = ".$row['cd_evento']."";
+                                $sqlChecker3 = "SELECT nr_limite FROM tb_evento Where cd_evento = ".$row['cd_evento'].";";
                                 $resultChecker3 = $conn->query($sqlChecker3);
                                 while($row2 = $resultChecker3->fetch_assoc()) { // verifica a contagem de cadastros realizados neste evento
                                     while($row3 = $resultChecker2->fetch_assoc()) { // verifica o limite do evento
                                         if ($row3['contagem'] < $row2['nr_limite']){ // real comparação entre os dois
-                                            $result = $conn->query($sql); // cadastra no evento se possivel
+                                            mysqli_query($conn,$sql); // cadastra você no evento se possivel
                                         }
                                     }
                                 }

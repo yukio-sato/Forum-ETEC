@@ -53,34 +53,49 @@
             </select>
             <!-- CAIXA DE SELEÇÃO QUE APARECE QUANDO CLICA EM SOU ALUNO -->
             <p id="txtCurso" hidden="true">Sou do curso de:</p>
-            <select id="selectCurso" name="selectCurso" class="ImputBox validate" hidden="true">
-                <option value="" selected disabled hidden>Curso</option>
-                <option value="Administração">Administração</option>
-                <option value="Edificações">Edificações</option>
-                <option value="Informática">Informática</option>
-                <option value="Enfermagem">Enfermagem</option>
-                <option value="Turismo">Turismo</option>
-            </select>
+            <div id="selectCurso" hidden="true">
+                <input type="text" id="allCurso" name="selectCurso" value="" hidden required="true">
+                <div id="cursos">
+                    <input type="checkbox" class="cursoInput" id="adm">
+                    <p>Administração</p>
+                </div>
+                <div id="cursos">
+                    <input type="checkbox" class="cursoInput" id="edi">
+                    <p>Edificações</p>
+                </div>
+                <div id="cursos">
+                    <input type="checkbox" class="cursoInput" id="inf">
+                    <p>Informática</p>
+                </div>
+                <div id="cursos">
+                    <input type="checkbox" class="cursoInput" id="enf">
+                    <p>Enfermagem</p>
+                </div>
+                <div id="cursos">
+                    <input type="checkbox" class="cursoInput" id="tur">
+                    <p>Turismo</p>
+                </div>
+            </div>
             <!-- CAIXA DE SELEÇÃO  QUE APARECE QUANDO CLICA EM SOU CONVIDADO
             Nota: vários botões 
             -->
             <p id="txtDia" hidden="true">Quero ir nos dias:</p>
             <div id="selectDia" hidden="true">
-                <input type="text" id="allDay" name="selectDia" value="" hidden required>
+                <input type="text" id="allDay" name="selectDia" value="" hidden required="true">
                 <div id="days">
-                    <input type="checkbox" id="dia1">
+                    <input type="checkbox" class="dias" id="dia1">
                     <p>(09/09) Descriçao Breve</p>
                 </div>
                 <div id="days">
-                    <input type="checkbox" id="dia2">
+                    <input type="checkbox" class="dias" id="dia2">
                     <p>(10/09) Descriçao Breve</p>
                 </div>
                 <div id="days">
-                    <input type="checkbox" id="dia3">
+                    <input type="checkbox" class="dias" id="dia3">
                     <p>(11/09) Descriçao Breve</p>
                 </div>
                 <div id="days">
-                    <input type="checkbox" id="dia4">
+                    <input type="checkbox" class="dias" id="dia4">
                     <p>(12/09) Descriçao Breve</p>
                 </div>
             </div>
@@ -95,8 +110,7 @@
             <div class="slide">
                 <iframe src="css/media/FórumEtec2023.mp4" class="banner" frameborder="0" allow="autoplay; encrypted-media"
                     allowfullscreen></iframe>
-                <img src="css/media/bannerexemplo.png" class="banner" alt="Banner do evento">
-                <img src="css/media/bannerexemplo2.png" class="banner" alt="Banner do evento 2">
+                <img src="css/media/programacao.jpg" class="banner" alt="Banner do evento">
             </div>
         </div>
 

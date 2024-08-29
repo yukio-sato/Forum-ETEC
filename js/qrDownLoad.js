@@ -1,4 +1,4 @@
-async function down(nm,userInfo){
+async function down(nm,enter,curso,userInfo){
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF();
     //pdf.text(`test:`, 10, 10); // text on pdf
@@ -9,8 +9,14 @@ async function down(nm,userInfo){
     const qrCodeDataUrl = qrCodeCanvas.toDataURL('image/png');
     */
 
-    pdf.addImage(`https://api.qrserver.com/v1/create-qr-code/?data=${userInfo}&size=100x100`, 'PNG', 0, 0, 100, 100); // the qr code itself
-    pdf.text(`Nome: ${nm}`, 60, 20); // text on pdf
+    pdf.addImage(`https://api.qrserver.com/v1/create-qr-code/?data=${userInfo}&size=100x100`, 'PNG', 0, 0, 40, 40); // the qr code itself
+    pdf.text(`Nome: ${nm.substring(0,1).toUpperCase()+nm.substring(1)}`, 55, 10); // text on pdf
+    pdf.text(`Entrou como: ${enter}`, 55, 15); // text on pdf
+    console.log(curso);
+    if (curso != "Curso"){
+        console.log(curso);
+        pdf.text(`Curso: ${curso.replace(",",", ")}`, 55, 20); // text on pdf
+    }
 
     pdf.save('qrcode.pdf'); // download in your device
 }

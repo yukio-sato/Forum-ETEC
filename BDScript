@@ -1,6 +1,6 @@
 #drop database db_cadastro;
-create database db_cadastro;
-use db_cadastro;
+create database forume33_db_cadastro;
+use forume33_db_cadastro;
 
 create table tb_evento(
 	cd_evento int auto_increment not null,
