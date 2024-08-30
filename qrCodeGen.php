@@ -21,10 +21,13 @@
 </head>
 
 <body>
+    <?php
+    require "g-Verify.php";
+    ?>
     <!-- CABEÇALHO -->
     <div class="header">
-        <img src="css/media/empty.png" id="back">
-        <img src="css/media/flogo2.jpg" id="logo" alt="Logo ETEC Adolpho Berezin" width="75%">
+        <a onclick="history.back();"> <img src="css/media/voltar.png" id="back" alt="Voltar"></a>
+        <h1>QR Code PDF</h1>
         <img src="css/media/empty.png" id="back">
     </div>
 
@@ -32,7 +35,7 @@
         <!-- INFORMAÇÕES -->
         <br>
         <br>
-        <h1>QR Code Escaneado</h1>
+        <h1>PDF Sendo Gerado</h1>
         <script src="js/qrCodeGen.js"></script>
             <?php
                 require "conexao.php";
@@ -74,7 +77,7 @@
                         $iCaseiro = 1;
                     }
                 }
-                echo '<script>save()</script>';
+                echo '<script>save();</script>';
             ?>
     </div>
 

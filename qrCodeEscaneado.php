@@ -34,7 +34,12 @@
         <?php
             require "conexao.php";
 
-            $userCPF = $_POST['cpf'];
+            $userCPF = '';
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+                $userCPF = $_POST['cpf'];
+            } else{
+                $userCPF = $_GET['cpf'];
+            }
 
             $sqlChecker = "SELECT * FROM tb_pessoa WHERE cpf_pessoa = '".$userCPF."';";
             $resultCheck = $conn->query($sqlChecker);

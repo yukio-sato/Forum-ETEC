@@ -29,13 +29,11 @@ document.addEventListener("DOMContentLoaded", () => {
           inversionAttempts: 'dontInvert',
         });
         if (code) {
-          console.log('Código QR encontrado:', code.data);
           if (code.data) {
-            qrFound = true; 
+            qrFound = true;
     
             window.location.href = code.data;
           } else {
-            console.log('O código QR encontrado não leva para o link especificado.');
             requestAnimationFrame(tick);
           }
         }

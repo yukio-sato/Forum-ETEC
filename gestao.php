@@ -19,12 +19,15 @@
 </head>
 
 <body>
+    <?php
+    require "g-Verify.php";
+    ?>
     <h1> Gestão </h1>
 
     <!-- BOTÕES -->
-    <button id="Rlt" class="Btn2" onclick="window.location.href='relatorio.html'">Relatório</button>
-    <button id="Glr" class="Btn2" onclick="window.location.href='leitorQRCode.html'">Ler QR Code</button>
-    <button id="Rlt" class="Btn2" onclick="window.location.href='qrCodeGen.php'">Gerar PDF dos Cadastrados</button>
+    <button id="Rlt" class="Btn2" onclick="window.location.href='relatorio.php'">Relatório</button>
+    <button id="Glr" class="Btn2"  onclick="window.location.href='leitorQRCode.php'">Ler QR Code</button>
+    <button id="Rlt" class="Btn2"  onclick="window.location.href='qrCodeGen.php'">Gerar PDF dos Cadastrados</button>
 
 </body>
 

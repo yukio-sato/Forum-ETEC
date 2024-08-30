@@ -38,12 +38,18 @@
         $dia = explode(",", explode($charRemoved,$info)[5]); // para Convidados
 
         $userInfo = "";
+        $multiSql = "";
+        $locatinHref = 'senha.php?cpf='.$userCPF.'';
 
+        session_start();
+        if (in_array($_SESSION["g-logged"], $_SESSION)){
+            $locatinHref = 'qrCodeEscaneado.php?cpf='.$userCPF.'';
+        }
         echo "<script>
         var delayInMilliseconds = 100; //0.1 second
 
             setTimeout(function() {
-                window.location.href = 'senha.php?cpf=".$userCPF."';
+                window.location.href = '".$locatinHref."';
             }, delayInMilliseconds);
         </script>";
 
@@ -128,6 +134,7 @@
                     mysqli_query($conn,$multiSql); // cadastra voc�� no evento se possivel
                 }
             }
+        }
     ?>
 </body>
 </html>

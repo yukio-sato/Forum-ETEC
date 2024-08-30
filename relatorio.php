@@ -19,9 +19,12 @@
 </head>
 
 <body>
+    <?php
+    require "g-Verify.php";
+    ?>
     <!-- CABEÇALHO -->
     <div class="header">
-        <a href="gestao.html"> <img src="css/media/voltar.png" id="back" alt="Voltar"></a>
+        <a onclick="history.back();"> <img src="css/media/voltar.png" id="back" alt="Voltar"></a>
         <h1>Relatório</h1>
         <img src="css/media/empty.png" id="back">
     </div>

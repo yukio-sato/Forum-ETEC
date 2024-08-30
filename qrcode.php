@@ -98,7 +98,8 @@
                 $curso = explode(",",$_GET['curso']); // para Alunos
                 $dia = explode(",",$_GET['dia']); // para Convidados
                 $userInfo = "";
-            
+                $multiSql = "";
+
                 
                 $userInfo = "https://localhost/Forum-ETEC/senha.php?cpf=$userCPF";
                 //$userInfo = "Nome: ".$nome." | Email: ".$userEmail." | CPF: ".$userCPF." | Entrar como: ".$identificador;

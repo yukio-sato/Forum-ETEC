@@ -16,7 +16,7 @@
         rel="stylesheet">
 
     <!-- JS -->
-    <script src="js/qrcodeReader.js"></script>
+    <script src="js/password.js"></script>
     
     <title>Fórum Tecnológico Interdisciplinar</title>
 </head>
@@ -24,20 +24,24 @@
 <body>
     <!-- CABEÇALHO -->
     <div class="header">
-        <a href="gestao.html"> <img src="css/media/voltar.png" id="back" alt="Voltar"></a>
-        <h1>Leitor de QR Code</h1>
+        <img src="css/media/empty.png" id="back">
+        <img src="css/media/flogo2.jpg" id="logo" alt="Logo ETEC Adolpho Berezin" width="75%">
         <img src="css/media/empty.png" id="back">
     </div>
 
+    <div class="content">
+        <!-- INFORMAÇÕES -->
+        <br>
+        <br>
+        <h1>Gestao Login</h1>
+        <form action="g-session.php" method="post">
+            <button id="visibling" type="button">⊙</button>
+            <input type="password" id="pswd">
+            <button type="submit">Confirma</button>
+        </form>
+    </div>
 
-    <img src="css/media/cameraw.png" style="background-color: rgba(145, 17, 16, 1);border-radius:10px;" width="50px">
-    <p>Aponte a câmera para QR Code</p>
-
-    <hr style="width: 50%;">
-    <video id="qr-video" width="100%" height="auto" autoplay></video>
-    <canvas id="qr-canvas" style="display: none;"></canvas>
-    <hr style="width: 50%;">
-    <div class="footer">
+    <div class="footer" style="margin-top: 25%;">
         <h5>Site desenvolvido pelos alunos
             <br><a href="https://github.com/niButera">Nicolas</a> e <a href="https://github.com/yukio-sato">Yukio</a>
             3i3 - 1º Semestre - 2024

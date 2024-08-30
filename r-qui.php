@@ -21,7 +21,7 @@
 <body>
     <!-- CABEÇALHO -->
     <div class="header">
-        <a href="relatorio.html"> <img src="css/media/voltar.png" id="back" alt="Voltar"></a>
+        <a onclick="history.back();"> <img src="css/media/voltar.png" id="back" alt="Voltar"></a>
         <div>
             <h1>Quinta-Feira</h1>
             <span>Estatisticas</span>
