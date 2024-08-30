@@ -1,6 +1,12 @@
     const { jsPDF } = window.jspdf;
     const pdf = new jsPDF();
-    async function down(nm,enter,userInfo,x,y){
+    var page = 1; // contains 1 pag
+    async function down(nm,enter,userInfo,x,y,pag){
+        if (page != pag){
+            page = pag;
+            pdf.addPage();
+        }
+        pdf.setPage(page);
         // Biblioteca = https://rawgit.com/MrRio/jsPDF/master/docs/jsPDF.html
         //pdf.text(`test:`, 10, 10); // text on pdf
     
@@ -10,7 +16,7 @@
         const qrCodeDataUrl = qrCodeCanvas.toDataURL('image/png');
         */
         let xBase = 67;
-        let yBase = 25;
+        let yBase = 25.5;
         let x2 = 32+(xBase*(x-1))
         let y2 = 20+(yBase*(y-1))
         pdf.addImage(`https://api.qrserver.com/v1/create-qr-code/?data=${userInfo}&size=100x100`, 'PNG', 10+(xBase*(x-1)), 12+(yBase*(y-1)), 20, 20); // the qr code itself

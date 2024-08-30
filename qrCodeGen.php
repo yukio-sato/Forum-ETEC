@@ -42,6 +42,8 @@
 
                 $first = false;
                 $cursos = "";
+                $iEtiqueta = 0;
+                $pag = 1;
                 $iCaseiro = 1;
                 $iPrimo = 1; // não sendo primo!
 
@@ -54,14 +56,22 @@
                     \''.$row['id_pessoa'].'\',
                     \'https://localhost/Forum-ETEC/senha.php?cpf='.$row['cpf_pessoa'].'\',
                     \''.$iPrimo.'\',
-                    \''.$iCaseiro.'\'
+                    \''.$iCaseiro.'\',
+                    \''.$pag.'\'
                     )</script>';
                     if ($iPrimo == 3){
                         $iPrimo = 1;
-                        $iCaseiro = $iCaseiro+1;
+                        $iCaseiro = $iCaseiro + 1;
                     }
                     else{
-                        $iPrimo = $iPrimo+1;
+                        $iPrimo = $iPrimo + 1;
+                    }
+                    $iEtiqueta = $iEtiqueta + 1;
+                    if ($iEtiqueta >= 33){
+                        $iEtiqueta = 0;
+                        $pag = $pag + 1;
+                        $iPrimo = 1;
+                        $iCaseiro = 1;
                     }
                 }
                 echo '<script>save()</script>';
