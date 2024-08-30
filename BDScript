@@ -49,7 +49,7 @@ select * from tb_cadastrado;
 #select * from tb_pessoa where cpf_pessoa = '000.000.000-00'; para achar a pessoa
 #select * from tb_cadastrado where fk_cd_evento = 0; altere o 0 para o código do evento
 
-#Teste
+#Senha: f0rum3t3cab!
 #http://localhost/Forum-ETEC/qrcode.php?nome=yukio&email=yukioutiyamasato@gmail.com&cpf=239.887.348-02&enter=ALU&curso=Informática&dia=dia
 #http://localhost/Forum-ETEC/senha.php?cpf=239.887.348-02
 #http://localhost/Forum-ETEC/qrCodeEscaneado.php

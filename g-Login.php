@@ -33,8 +33,9 @@
         <!-- INFORMAÇÕES -->
         <br>
         <br>
-        <h1>Gestao Login</h1>
-        <form action="g-session.php" method="post">
+        <h1>Gestão Login</h1>
+        <form action="gestao.php" method="post">
+            <input type="text" name="g-logged" value="sim" hidden>
             <button id="visibling" type="button">⊙</button>
             <input type="password" id="pswd">
             <button type="submit">Confirma</button>

@@ -25,9 +25,18 @@
     <h1> Gestão </h1>
 
     <!-- BOTÕES -->
-    <button id="Rlt" class="Btn2" onclick="window.location.href='relatorio.php'">Relatório</button>
-    <button id="Glr" class="Btn2"  onclick="window.location.href='leitorQRCode.php'">Ler QR Code</button>
-    <button id="Rlt" class="Btn2"  onclick="window.location.href='qrCodeGen.php'">Gerar PDF dos Cadastrados</button>
+    <form action="relatorio.php" method="post">
+        <input type="text" name="g-logged" value="sim" hidden>
+        <button id="Rlt" class="Btn2">Relatório</button>
+    </form>
+    <form action="leitorQRCode.php" method="post">
+        <input type="text" name="g-logged" value="sim" hidden>
+        <button id="Rlt" class="Btn2">Ler QR Code</button>
+    </form>
+    <form action="qrCodeGen.php" method="post">
+        <input type="text" name="g-logged" value="sim" hidden>
+        <button id="Rlt" class="Btn2">Gerar PDF dos Cadastrados</button>
+    </form>
 
 </body>
 

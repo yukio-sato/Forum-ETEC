@@ -29,6 +29,7 @@
         <img src="css/media/empty.png" id="back">
     </div>
     <?php
+        require "g-Verify.php";
         require "conexao.php";
 
         $dia = '2024-09-09'; // Substitua para o dia do evento YYYY-MM-DD

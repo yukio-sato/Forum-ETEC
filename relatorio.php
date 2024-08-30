@@ -34,10 +34,22 @@
     <p>Escolha um dia e veja suas estatisticas</p>
 
     <!-- BOTÃO -->
-    <button class="Btn2" onclick="window.location.href='r-seg.php'">Segunda-Feira (09/09)</button>
-    <button class="Btn2" onclick="window.location.href='r-ter.php'">Terça-Feira (10/09)</button>
-    <button class="Btn2" onclick="window.location.href='r-qua.php'">Quarta-Feira (11/09)</button>
-    <button class="Btn2" onclick="window.location.href='r-qui.php'">Quinta-Feira (12/09)</button>
+    <form action="r-seg.php" method="post">
+        <input type="text" name="g-logged" value="sim" hidden>
+        <button id="Rlt" class="Btn2">Segunda-Feira (09/09)</button>
+    </form>
+    <form action="r-ter.php" method="post">
+        <input type="text" name="g-logged" value="sim" hidden>
+        <button id="Rlt" class="Btn2">Terça-Feira (10/09)</button>
+    </form>
+    <form action="r-qua.php" method="post">
+        <input type="text" name="g-logged" value="sim" hidden>
+        <button id="Rlt" class="Btn2">Quarta-Feira (11/09)</button>
+    </form>
+    <form action="r-qui.php" method="post">
+        <input type="text" name="g-logged" value="sim" hidden>
+        <button id="Rlt" class="Btn2">Quinta-Feira (12/09)</button>
+    </form>
 
     <div class="footer">
         <p>Site desenvolvido pelos alunos

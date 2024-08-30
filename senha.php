@@ -39,6 +39,7 @@
                 $cpf = $_GET['cpf'];
                 echo "<input type='text' name='cpf' hidden value='$cpf'>";
             ?>
+            <input type="text" name="g-logged" value="sim" hidden>
             <button id="visibling" type="button">⊙</button>
             <input type="password" id="pswd">
             <button type="submit">Confirma</button>

@@ -32,6 +32,7 @@
         <br>
         <h1>QR Code Escaneado</h1>
         <?php
+            require "g-Verify.php";
             require "conexao.php";
 
             $userCPF = '';

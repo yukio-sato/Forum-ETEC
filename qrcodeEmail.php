@@ -36,14 +36,14 @@
         $identificador = explode($charRemoved,$info)[3];
         $curso = explode(",", explode($charRemoved,$info)[4]); // para Convidados
         $dia = explode(",", explode($charRemoved,$info)[5]); // para Convidados
+        $site = explode($charRemoved,$info)[6]; // para Convidados
 
         $userInfo = "";
         $multiSql = "";
         $locatinHref = 'senha.php?cpf='.$userCPF.'';
 
-        session_start();
-        if (in_array($_SESSION["g-logged"], $_SESSION)){
-            $locatinHref = 'qrCodeEscaneado.php?cpf='.$userCPF.'';
+        if ($site = "Site"){
+            $locatinHref = 'qrCodeEscaneado.php?cpf='.$userCPF.'&g-logged=GLOG';
         }
         echo "<script>
         var delayInMilliseconds = 100; //0.1 second
