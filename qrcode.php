@@ -131,12 +131,19 @@
                                 while($row2 = $resultChecker3->fetch_assoc()) { // verifica a contagem de cadastros realizados neste evento
                                     while($row3 = $resultChecker2->fetch_assoc()) { // verifica o limite do evento
                                         if ($row3['contagem'] < $row2['nr_limite']){ // real comparação entre os dois
-                                            mysqli_query($conn,$sql); // cadastra você no evento se possivel
+                                            if ($multiSql != ""){
+                                                $multiSql .= ",(null,'$userCPF',".$row["cd_evento"].")";
+                                            }
+                                            else{
+                                                $multiSql = "INSERT INTO tb_cadastrado VALUES (null,'$userCPF',".$row["cd_evento"].")";
+                                            }                                       
                                         }
                                     }
                                 }
                             }
                         }
+                        $multiSql .= ";";
+                        mysqli_query($conn,$multiSql); // cadastra você no evento se possivel
                     }
                     
                 }
@@ -150,12 +157,14 @@
                     if ($resultCheck->num_rows <= 0){ // se não existir o login/cadastro
                         mysqli_query($conn,$sql); // cadastra você no tb_pessoa
                         for ($i=0; $i < count($dia); $i++) { // utilizado para cada dia selecionado
+                            echo ",";
+                            print_r($dia[$i]);
+                            $multiSql = "";
                             $sqlOptional = "SELECT * FROM tb_evento WHERE dt_evento = '".$dia[$i]."';"; // recebe todos os eventos que possuem o mesmo dia selecionado
-    
+                
                             $resultOptional = $conn->query($sqlOptional);
                             while($row = $resultOptional->fetch_assoc()) { // 'todos' os dias selecionados demonstrados
-                                $sql = "INSERT INTO tb_cadastrado
-                                VALUES (null,'$userCPF',".$row["cd_evento"].");"; // comando mysql que vai inserir o dado de cadastro do evento
+                            
                                 $sqlChecker2 = "SELECT count(cd_cadastrado) as 'contagem' FROM tb_cadastrado Where fk_cd_evento = ".$row['cd_evento'].";";
                                 $resultChecker2 = $conn->query($sqlChecker2);
                             
@@ -164,12 +173,20 @@
                                 while($row2 = $resultChecker3->fetch_assoc()) { // verifica a contagem de cadastros realizados neste evento
                                     while($row3 = $resultChecker2->fetch_assoc()) { // verifica o limite do evento
                                         if ($row3['contagem'] < $row2['nr_limite']){ // real comparação entre os dois
-                                            mysqli_query($conn,$sql); // cadastra você no evento se possivel
+                                            if ($multiSql != ""){
+                                                $multiSql .= ",(null,'$userCPF',".$row["cd_evento"].")";
+                                            }
+                                            else{
+                                                $multiSql = "INSERT INTO tb_cadastrado VALUES (null,'$userCPF',".$row["cd_evento"].")";
+                                            }
                                         }
                                     }
                                 }
                             }
+ 
                         }
+                        $multiSql .= ";";
+                        mysqli_query($conn,$multiSql); // cadastra você no evento se possivel
                     }
                 }
             ?>
@@ -196,3 +213,4 @@
         </p>
     </div>
 </body>
+</html>
