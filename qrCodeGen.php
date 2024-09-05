@@ -43,8 +43,6 @@
                 $sqlChecker = "SELECT * FROM tb_pessoa ORDER BY nm_pessoa ASC;"; // verificador se a pessoa já cadastrou ou não
                 $resultCheck = $conn->query($sqlChecker);
 
-                $first = false;
-                $cursos = "";
                 $iEtiqueta = 0;
                 $pag = 1;
                 $iCaseiro = 1;
@@ -53,11 +51,9 @@
                 while($row = $resultCheck->fetch_assoc()) { // todos os resultados demonstrados do curso 
                     $sqlChecker2 = "SELECT * FROM tb_cadastrado WHERE fk_cpf_pessoa = '".$row['cpf_pessoa']."';"; // verificador se a pessoa já cadastrou ou não
                     $resultCheck2 = $conn->query($sqlChecker2);
-                    echo "<br>";
-                    print_r($cursos);
                     echo '<script>down(\''.$row['nm_pessoa'].'\',
                     \''.$row['id_pessoa'].'\',
-                    \'https://localhost/Forum-ETEC/senha.php?cpf='.$row['cpf_pessoa'].'\',
+                    \'https://forumetecab.com.br/senha.php?cpf='.$row['cpf_pessoa'].'\',
                     \''.$iPrimo.'\',
                     \''.$iCaseiro.'\',
                     \''.$pag.'\'

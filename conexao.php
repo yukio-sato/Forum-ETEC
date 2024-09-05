@@ -1,7 +1,7 @@
 <?php
-//$servername = "forumetec.mysql.database.azure.com"; // Link do Azure
-//$username = "forumetec"; // Nome do Usuario do MYSQLI
-//$password = "f0rum3t3cab!"; // Senha (Normalmente: f0rum3t3cab!)
+// $servername = "forumetec.mysql.database.azure.com"; // Link do Azure
+// $username = "forumetec"; // Nome do Usuario do MYSQLI
+// $password = "f0rum3t3cab!"; // Senha (Normalmente: f0rum3t3cab!)
 $dbname = "forume33_db_cadastro"; // Nome do Database
 
 

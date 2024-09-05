@@ -26,9 +26,10 @@ document.addEventListener("DOMContentLoaded", ()=> {
             showElement("txtCurso");
             showElement("selectCurso");
             showElement("allCurso");
-            hideElement("txtDia");
-            hideElement("selectDia");
-            hideElement("allDay");
+            showElement("txtDia");
+            showElement("selectDia");
+            showElement("allDay");
+            select("none");
         }
         else if (vlEscolhido == "CON"){
             showElement("txtDia");
@@ -37,6 +38,7 @@ document.addEventListener("DOMContentLoaded", ()=> {
             hideElement("txtCurso");
             hideElement("selectCurso");
             hideElement("allCurso");
+            select("none");
         }
         else{
             hideElement("txtCurso");
@@ -84,44 +86,45 @@ document.addEventListener("DOMContentLoaded", ()=> {
         updtDay(dated);
     });
 
+    function select(obj){
+        tb_curso = ["adm","edi","inf","enf","tur"];
+        for (let u = 0; u < tb_curso.length; u++) {
+            if (obj != tb_curso[u]){
+                document.getElementById(tb_curso[u]).checked = false;
+            }
+        }
+    }
 
     function updtCurso(curso){
-        if (document.getElementById("allCurso").value.search(curso) < 0){
-            document.getElementById("allCurso").value += ","+curso;
-        }
-        else if (document.getElementById("allCurso").value.search(curso) >= 0){
-            document.getElementById("allCurso").value = document.getElementById("allCurso").value.replace(curso,"");
-        }
-        if (document.getElementById("allCurso").value[0] == ","){
-            document.getElementById("allCurso").value = document.getElementById("allCurso").value.substring(1)
-        }
-        if (document.getElementById("allCurso").value.length > 0 && document.getElementById("allCurso").value[document.getElementById("allCurso").value.length-1] == ","){
-            document.getElementById("allCurso").value = document.getElementById("allCurso").value.substring(0,document.getElementById("allCurso").value.length-1)
-        }
-        document.getElementById("allCurso").value = document.getElementById("allCurso").value.replace(",,",",");
+        document.getElementById("allCurso").value = curso;
     }
 
     document.getElementById("adm").addEventListener("change", ()=>{
+        select("adm");
         var cursoDe = "Administração";
         updtCurso(cursoDe);
     });
 
     document.getElementById("edi").addEventListener("change", ()=>{
+        select("edi");
         var cursoDe = "Edificações";
         updtCurso(cursoDe);
     });
 
     document.getElementById("inf").addEventListener("change", ()=>{
+        select("inf");
         var cursoDe = "Informática";
         updtCurso(cursoDe);
     });
 
     document.getElementById("enf").addEventListener("change", ()=>{
+        select("enf");
         var cursoDe = "Enfermagem";
         updtCurso(cursoDe);
     });
 
     document.getElementById("tur").addEventListener("change", ()=>{
+        select("tur");
         var cursoDe = "Turismo";
         updtCurso(cursoDe);
     });

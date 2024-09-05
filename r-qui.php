@@ -87,17 +87,33 @@
             tb_cadastrado as c,
             tb_pessoa as p
             WHERE c.fk_cd_evento = e.cd_evento
-            and e.nm_evento = '".$cursos[$i]."'
             and p.cpf_pessoa = c.fk_cpf_pessoa
             and p.id_pessoa = 'ALU'
+            and p.curso_pessoa = '".$cursos[$i]."'
             and e.dt_evento = '".$dia."';"; // verifica todos os eventos relacionado ao curso
             $result2 = $conn->query($sql2);
 
             while($row2 = $result2->fetch_assoc()) { // todos os resultados demonstrados do curso
-            echo '
-                <div id="c-est">
-                    <h2>'.$cursos[$i].'</h2> '.($row2['counted']).'
-                </div>
+                echo '
+                    <div id="c-est">
+                        <h2>'.$cursos[$i].'</h2> '.($row2['counted']).'
+                    </div>
+                ';
+            }
+
+            $sql3 = "SELECT *
+            FROM tb_pessoa as p,
+            tb_cadastrado as c,
+            tb_evento as e
+            WHERE c.fk_cd_evento = e.cd_evento
+            and p.cpf_pessoa = c.fk_cpf_pessoa
+            and p.id_pessoa = 'ALU'
+            and p.curso_pessoa = '".$cursos[$i]."'
+            and e.dt_evento = '".$dia."';"; // verifica todos os eventos relacionado ao curso
+            $result3 = $conn->query($sql3);
+            while($row3 = $result3->fetch_assoc()) { // todos os resultados demonstrados do curso
+                echo '
+                        <h2>'.$row3['nm_pessoa'].'</h2>
                 ';
             }
         }
@@ -119,20 +135,33 @@
             </div>
             ';
         }
+        
+        $sql4 = "SELECT *
+            FROM tb_pessoa as p,
+            tb_cadastrado as c,
+            tb_evento as e
+            WHERE c.fk_cd_evento = e.cd_evento
+            and p.cpf_pessoa = c.fk_cpf_pessoa
+            and p.id_pessoa = 'CON'
+            and e.dt_evento = '".$dia."';"; // verifica todos os eventos relacionado ao curso
+            $result4 = $conn->query($sql4);
+            while($row4 = $result4->fetch_assoc()) { // todos os resultados demonstrados do curso
+                echo '
+                    <h2>'.$row4['nm_pessoa'].'</h2>
+                ';
+            }
     ?>
     </div>
     
     <div class="footer">
         <p>Site desenvolvido pelos alunos
             <br><a href="https://github.com/niButera">Nicolas</a> e <a href="https://github.com/yukio-sato">Yukio</a>
-            3i3 -
-            1º Semestre - 2024
         </p>
     </div>
     <script>
         setTimeout(function(){
             window.location.reload();
-        },2500);
+        },10000);
     </script>
 </body>
 </html>

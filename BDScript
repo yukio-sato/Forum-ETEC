@@ -1,10 +1,9 @@
-#drop database forume33_db_cadastro;
+drop database forume33_db_cadastro;
 create database forume33_db_cadastro;
 use forume33_db_cadastro;
 
 create table tb_evento(
 	cd_evento int auto_increment not null,
-    nm_evento varchar(45),
 	dt_evento date,
     nr_limite int,
 	primary key (cd_evento)
@@ -12,27 +11,36 @@ create table tb_evento(
 
 # Date Format: YYYY-MM-DD, ou traduzindo: Ano-Mes-Dia
 insert into tb_evento # Valores Não 100% atualizado
-values(null,"Informática","2024-09-09",400),
-(null,"Administração","2024-09-11",400),
-(null,"Edificações","2024-09-12",400),
-(null,"Administração","2024-09-12",400),
-(null,"Informática","2024-09-13",400),
-(null,"Enfermagem","2024-09-14",400),
-(null,"Turismo","2024-09-14",400);
+values
+(null,"2024-09-09",400),   # -----------Dia 09/09/2024------------
+(null,"2024-09-10",400), # -----------Dia 10/09/2024------------
+(null,"2024-09-11",400),   # -----------Dia 11/09/2024------------
+(null,"2024-09-12",400); # -----------Dia 12/09/2024------------
 
 select * from tb_evento;
-
 
 create table tb_pessoa(
     cpf_pessoa char(14) not null,
 	nm_pessoa varchar(45),
     email_pessoa varchar(45),
+    curso_pessoa varchar(45),
     id_pessoa char(3) not null,
     dia_pessoa int,
     primary key(cpf_pessoa)
 );
 
 select * from tb_pessoa;
+
+
+create table tb_especial(
+    cd_especial int not null auto_increment,
+	nm_especial varchar(45),
+    funcao_especial varchar(45),
+    primary key(cd_especial)
+);
+
+select * from tb_especial;
+
 
 create table tb_cadastrado(
 	cd_cadastrado int auto_increment not null,
@@ -44,12 +52,14 @@ create table tb_cadastrado(
 );
 
 select * from tb_cadastrado;
-#utilize drop database em testes para remover os valores, caso contrário você apagará todas as informações do usuário
-#update tb_pessoa set dia_pessoa = 0 where cpf_pessoa = '000.000.000-00'; para atualizar
+#utilize drop database em TESTES para remover os valores, caso contrário você apagará todas as informações do usuário
+#no caso citado acima você terá que utilizar update table ou alter table dependendo da situação:
+#alter table para alterar valores fixos da tabela, exemplo: chave primaria, nm_pessoa e entre outros
+#update funciona somente em valores de Insert, exemplo: update tb_pessoa set nm_pessoa = 'teste' where cd_pessoa = 1;
+#update tb_pessoa set dia_pessoa = 0 where cpf_pessoa = '000.000.000-00'; para resetar o dia
+#update tb_pessoa set dia_pessoa = dia_pessoa + 1 where cpf_pessoa = '000.000.000-00'; para atualizar o dia
+
 #select * from tb_pessoa where cpf_pessoa = '000.000.000-00'; para achar a pessoa
 #select * from tb_cadastrado where fk_cd_evento = 0; altere o 0 para o código do evento
 
 #Senha: f0rum3t3cab!
-#http://localhost/Forum-ETEC/qrcode.php?nome=yukio&email=yukioutiyamasato@gmail.com&cpf=239.887.348-02&enter=ALU&curso=Informática&dia=dia
-#http://localhost/Forum-ETEC/senha.php?cpf=239.887.348-02
-#http://localhost/Forum-ETEC/qrCodeEscaneado.php

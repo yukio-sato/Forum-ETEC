@@ -51,7 +51,7 @@
                 if ($resultCheck->num_rows > 0){
                     while($row2 = $resultCheck2->fetch_assoc()) {
                         echo '
-                        <p>Curso: '.$row2["nm_evento"].' ('.$row2['dt_evento'].')</p>
+                        <p>Palestra do Dia: '.$row2['dt_evento'].'</p>
                         ';
                     }
                     while($row = $resultCheck->fetch_assoc()) {
