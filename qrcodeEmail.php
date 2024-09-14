@@ -28,26 +28,27 @@
         require "conexao.php";
 
         $info = $_GET['info'];
-        $charRemoved = "|";
+        $charRemoved = "|"; // character que vai remover ao ser lido por qrcode do email
 
-        $nome = explode($charRemoved,$info)[0];
-        $userEmail = explode($charRemoved,$info)[1];
-        $userCPF = explode($charRemoved,$info)[2];
-        $identificador = explode($charRemoved,$info)[3];
-        $curso = explode($charRemoved,$info)[4];
+        $nome = explode($charRemoved,$info)[0];              // primeiro valor 'nome'
+        $userEmail = explode($charRemoved,$info)[1];         // segundo valor 'email'
+        $userCPF = explode($charRemoved,$info)[2];           // terceiro valor 'cpf'
+        $identificador = explode($charRemoved,$info)[3];     // quarto valor 'como ele entrou'
+        $curso = explode($charRemoved,$info)[4];             // quinto valor 'Curso Escolhido'
         $dia = explode(",", explode($charRemoved,$info)[5]); // para Convidados
-        $site = explode($charRemoved,$info)[6]; // para Gestao
+        // $site = explode($charRemoved,$info)[6];              // para Gestao
 
         $userInfo = "";
         $multiSql = "";
         $locatinHref = 'senha.php?cpf='.$userCPF.'';
 
-        if ($site = "Site"){
-            $locatinHref = 'qrCodeEscaneado.php?cpf='.$userCPF.'&g-logged=GLOG';
-        }
+        // if ($site = "Site"){
+        //     $locatinHref = 'qrCodeEscaneado.php?cpf='.$userCPF.'&g-logged=GLOG';
+        // }
+
+        // script utilizado para mover a tela do usuário para outra página após 0.1 segundo
         echo "<script>
         var delayInMilliseconds = 100; //0.1 second
-
             setTimeout(function() {
                 window.location.href = '".$locatinHref."';
             }, delayInMilliseconds);
@@ -55,7 +56,6 @@
 
         $sqlOptional = "";
         if ($identificador == "ALU"){
-
             $sql = "INSERT INTO tb_pessoa
             VALUES ('".$userCPF."','".$nome."','".$userEmail."','".$curso."','".$identificador."',0);"; // comando que cadastra o usuário no site
             

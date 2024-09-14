@@ -23,40 +23,58 @@
     require "g-Verify.php";
     ?>
     <!-- CABEÇALHO -->
-    <div class="header">
-        <a onclick="history.back();"> <img src="css/media/voltar.png" id="back" alt="Voltar"></a>
-        <h1>Relatório</h1>
-        <img src="css/media/empty.png" id="back">
-    </div>
 
+    <form action="gestao.php" method="post">
+        <input type="text" name="g-logged" value="sim" hidden>
+        <div class="header">
+            <button style="background-color:transparent;border:none;"> <img src="css/media/voltar.png" id="back" alt="Voltar"></button>
+            <h1>Relatório</h1>
+            <img src="css/media/empty.png" id="back">
+        </div>
+    </form>
 
     <img src="css/media/insights.png" width="50px">
-    <p>Escolha um dia e veja suas estatisticas</p>
+    <p>Escolha uma categoria e veja suas estatisticas</p>
 
     <!-- BOTÃO -->
-    <form action="r-seg.php" method="post">
+    <form action="r-geral.php" method="post">
         <input type="text" name="g-logged" value="sim" hidden>
-        <button id="Rlt" class="Btn2">Segunda-Feira (09/09)</button>
+        <button id="GRL" class="Btn2">Geral</button>
     </form>
-    <form action="r-ter.php" method="post">
+    <form action="r-contaDia.php" method="post">
         <input type="text" name="g-logged" value="sim" hidden>
-        <button id="Rlt" class="Btn2">Terça-Feira (10/09)</button>
+        <input type="text" name="g-conta" value="0" hidden>
+        <button id="GRL" class="Btn2">Contador de Dias</button>
     </form>
-    <form action="r-qua.php" method="post">
+    <form action="r-adm.php" method="post">
         <input type="text" name="g-logged" value="sim" hidden>
-        <button id="Rlt" class="Btn2">Quarta-Feira (11/09)</button>
+        <input type="text" name="g-dia" value="2024-09-09" hidden>
+        <button id="ADM" class="Btn2">Administração</button>
     </form>
-    <form action="r-qui.php" method="post">
+    <form action="r-edi.php" method="post">
         <input type="text" name="g-logged" value="sim" hidden>
-        <button id="Rlt" class="Btn2">Quinta-Feira (12/09)</button>
+        <input type="text" name="g-dia" value="2024-09-09" hidden>
+        <button id="EDI" class="Btn2">Edificações</button>
+    </form>
+    <form action="r-enf.php" method="post">
+        <input type="text" name="g-logged" value="sim" hidden>
+        <input type="text" name="g-dia" value="2024-09-09" hidden>
+        <button id="ENF" class="Btn2">Enfermagem</button>
+    </form>
+    <form action="r-inf.php" method="post">
+        <input type="text" name="g-logged" value="sim" hidden>
+        <input type="text" name="g-dia" value="2024-09-09" hidden>
+        <button id="INF" class="Btn2">Informática</button>
+    </form>
+    <form action="r-tur.php" method="post">
+        <input type="text" name="g-logged" value="sim" hidden>
+        <input type="text" name="g-dia" value="2024-09-09" hidden>
+        <button id="TUR" class="Btn2">Turismo</button>
     </form>
 
     <div class="footer">
-        <p>Site desenvolvido pelos alunos
-            <br><a href="https://github.com/niButera">Nicolas</a> e <a href="https://github.com/yukio-sato">Yukio</a>
-            3i3 -
-            1º Semestre - 2024
-        </p>
+        <h6>Site desenvolvido por
+            <br><a href="https://github.com/niButera">Nicolas Butera</a> e <a href="https://github.com/yukio-sato">Yukio Sato</a>
+        </h6>
     </div>
 </body>
-</html>

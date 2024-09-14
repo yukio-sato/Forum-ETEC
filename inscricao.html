@@ -47,10 +47,11 @@
             <!-- CAIXA DE SELEÇÃO -->
             <select id="SelectPC" class="ImputBox validate" name="selectPC" required>
                 <option value="" selected disabled hidden>Entrar como</option>
-                <option value="CON">Convidado</option>
+                <option value="VIS">Visitante</option>
                 <option value="ALU">Aluno</option>
                 <!-- <option value="PAL">Palestrante</option> -->
             </select>
+
             <!-- CAIXA DE SELEÇÃO QUE APARECE QUANDO CLICA EM SOU ALUNO -->
             <p id="txtCurso" hidden="true">Sou do curso de:</p>
             <div id="selectCurso" hidden="true">
@@ -83,13 +84,13 @@
             <div id="selectDia" hidden="true">
                 <input type="text" id="allDay" name="selectDia" value="" hidden required="true">
                 <div id="days">
-                    <input type="checkbox" class="dias" id="dia1">
-                    <p>Segunda-Feira (09/09)</p>
+                    <input type="checkbox" class="dias" id="dia1" hidden>
+                    <p hidden>Segunda-Feira (09/09)</p>
                 </div>
-                    <div id="wannago">
-                        <span> <a>Julia Gare</a> - A Jornada da Capacitação
-                            Técnica à Alta Performance Profissional</span>
-                    </div>
+                <div id="wannago" hidden>
+                    <span> <a>Julia Gare</a> - A Jornada da Capacitação
+                        Técnica à Alta Performance Profissional</span>
+                </div>
 
                 <div id="days">
                     <input type="checkbox" class="dias" id="dia2">
@@ -156,7 +157,6 @@
     <div class="footer">
         <h5>Site desenvolvido pelos alunos
             <br><a href="https://github.com/niButera">Nicolas</a> e <a href="https://github.com/yukio-sato">Yukio</a>
-            3i3 - 1º Semestre - 2024
         </h5>
     </div>
 </body>

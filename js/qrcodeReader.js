@@ -32,7 +32,7 @@ document.addEventListener("DOMContentLoaded", () => {
           if (code.data) {
             qrFound = true;
     
-            window.location.href = code.data+"|Site";
+            window.location.href = code.data;
           } else {
             requestAnimationFrame(tick);
           }

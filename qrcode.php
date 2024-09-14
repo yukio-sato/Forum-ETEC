@@ -41,9 +41,11 @@
                 Para que consiga conectar com o banco de dados, você pode utilizar o Xampp control ou utilizar um serviço Azure.
                 O serviço Azure é um pouco mais complicado devido a questão que não é 100% gratis, onde toda vez que seu banco está
                 ligado ele gasta o seus créditos, desta maneira, para testes, não esqueça de desliga-lo após o uso.
-                Nota: é recomendado utilizar Xampp localmente e após ter certeza do site em sí, utilize azure.
+                Nota 1: Lembrando que a primeira vez que cria-se um banco de dados você recebe 750H gratuito de banco de dados
+                Nota 2: é recomendado utilizar Xampp localmente e após ter certeza do site em sí, utilize-se o azure.
                 Motivo por utilizar Microsoft Azure: normalmente o azure possui compatibilidade com PHP, caso encontre algum serviço que
-                também possui compatibilidade e saiba utilizar, não hesite.
+                também possui compatibilidade e saiba utilizar, não hesite. Como por exemplo Hostgator, entretando ainda é necessário que
+                utiliza-se serviço azure devido seu banco de dados desatualizado (no momento que eu escrevo)
 
                 Caso esteja utilizando azure:
                  1- Após fazer a parte chata de receber créditos, você deve começar com o "MySQL Flexible" ou como demonstrado "Azure Database for MySQL Flexible Server".
@@ -100,108 +102,29 @@
                 $multiSql = "";
 
                 
-                $userInfo = "https://forumetecab.com.br/senha.php?cpf=$userCPF";
-                //$userInfo = "Nome: ".$nome." | Email: ".$userEmail." | CPF: ".$userCPF." | Entrar como: ".$identificador;
+                $userInfo = "https://forumetecab.com.br/senha.php?cpf=$userCPF"; // Lembre-se de mudar o link
+
                 echo '<img src="https://api.qrserver.com/v1/create-qr-code/?data='.$userInfo.'&size=100%x100%" id="code">';
                 echo '<button id="Dwld" class="Btn3" onclick="down(\''.$nome.'\',\''.$identificador.'\',\''.$curso.'\',\''.$userInfo.'\')">Baixar QrCode</button>';
-                
-                $sqlOptional = "";
-                if ($identificador == "ALU"){
-
-                    $sql = "INSERT INTO tb_pessoa
-                    VALUES ('".$userCPF."','".$nome."','".$userEmail."','".$curso."','".$identificador."',0);"; // comando que cadastra o usuário no site
-                    
-                    $sqlChecker = "SELECT * FROM tb_pessoa WHERE cpf_pessoa = '".$userCPF."';"; // verificador se a pessoa já cadastrou ou não
-                    $resultCheck = $conn->query($sqlChecker);
-                    if ($resultCheck->num_rows <= 0){ // se não existir o login/cadastro
-                        mysqli_query($conn,$sql); // cadastra você no tb_pessoa
-                        $sqlChecker = "SELECT * FROM tb_evento;"; // verificador se a pessoa já cadastrou ou não
-
-                        $resultOptional = $conn->query($sqlChecker);
-                        while($row = $resultOptional->fetch_assoc()) { // 'todos' os dias selecionados demonstrados
-
-                            $sqlChecker2 = "SELECT count(cd_cadastrado) as 'contagem' FROM tb_cadastrado Where fk_cd_evento = ".$row['cd_evento'].";";
-                            $resultChecker2 = $conn->query($sqlChecker2);
-                        
-                            $sqlChecker3 = "SELECT nr_limite FROM tb_evento Where cd_evento = ".$row['cd_evento'].";";
-                            $resultChecker3 = $conn->query($sqlChecker3);
-                            while($row2 = $resultChecker3->fetch_assoc()) { // verifica a contagem de cadastros realizados neste evento
-                                while($row3 = $resultChecker2->fetch_assoc()) { // verifica o limite do evento
-                                    if ($row3['contagem'] < $row2['nr_limite']){ // real comparação entre os dois
-                                        if ($multiSql != ""){
-                                            $multiSql .= ",(null,'$userCPF',".$row["cd_evento"].")";
-                                        }
-                                        else{
-                                            $multiSql = "INSERT INTO tb_cadastrado VALUES (null,'$userCPF',".$row["cd_evento"].")";
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                    $multiSql .= ";";
-                    mysqli_query($conn,$multiSql); // cadastra você no evento se possivel
-                }
-                elseif ($dia[0] != "Dia"){
-
-                    $sql = "INSERT INTO tb_pessoa
-                    VALUES ('".$userCPF."','".$nome."','".$userEmail."','".$curso."','".$identificador."',0);"; // comando que cadastra o usuário no site
-                    
-                    $sqlChecker = "SELECT * FROM tb_pessoa WHERE cpf_pessoa = '".$userCPF."';"; // verificador se a pessoa já cadastrou ou não
-                    $resultCheck = $conn->query($sqlChecker);
-                    if ($resultCheck->num_rows <= 0){ // se não existir o login/cadastro
-                        mysqli_query($conn,$sql); // cadastra você no tb_pessoa
-                        $multiSql = "";
-                        for ($i=0; $i < count($dia); $i++) { // utilizado para cada dia selecionado
-                            $sqlOptional = "SELECT * FROM tb_evento WHERE dt_evento = '".$dia[$i]."';"; // recebe todos os eventos que possuem o mesmo dia selecionado
-                            $resultOptional = $conn->query($sqlOptional);
-                            while($row = $resultOptional->fetch_assoc()) { // 'todos' os dias selecionados demonstrados
-                            
-                                $sqlChecker2 = "SELECT count(cd_cadastrado) as 'contagem' FROM tb_cadastrado Where fk_cd_evento = ".$row['cd_evento'].";";
-                                $resultChecker2 = $conn->query($sqlChecker2);
-                            
-                                $sqlChecker3 = "SELECT nr_limite FROM tb_evento Where cd_evento = ".$row['cd_evento'].";";
-                                $resultChecker3 = $conn->query($sqlChecker3);
-                                while($row2 = $resultChecker3->fetch_assoc()) { // verifica a contagem de cadastros realizados neste evento
-                                    while($row3 = $resultChecker2->fetch_assoc()) { // verifica o limite do evento
-                                        if ($row3['contagem'] < $row2['nr_limite']){ // real comparação entre os dois
-                                            if ($multiSql != ""){
-                                                $multiSql .= ",(null,'$userCPF',".$row["cd_evento"].")";
-                                            }
-                                            else{
-                                                $multiSql = "INSERT INTO tb_cadastrado VALUES (null,'$userCPF',".$row["cd_evento"].")";
-                                            }
-                                        }
-                                    }
-                                }
-                            }
- 
-                        }
-                        $multiSql .= ";";
-                        mysqli_query($conn,$multiSql); // cadastra você no evento se possivel
-                    }
-                }
             ?>
         </div>
     </div>
 
-    <div id="RedBox2">
-        <div class="info-local">
-            <img src="css/media/localw.png" id="local" alt="">
-            <h5>ETEC Adolpho Berezin</h5>
-        </div>
-        <div class="info-local">
-            <img src="css/media/place.png" id="local" alt="">
-            <h5>Av. Monteiro Lobato, nº 8000<br>Bal. Jussara, Mongaguá</h5>
-        </div>
+    <div id="RedBox2" alt="Localização da Etec">
+            <div class="info-local" onclick="window.open('https://www.google.com/maps/place/Etec+Adolpho+Berezin/@-24.12219,-46.678684,15z/data=!4m6!3m5!1s0x94ce27e8f7751d31:0x6382eb95def97024!8m2!3d-24.12219!4d-46.678684!16s%2Fg%2F1tczg0ht?entry=ttu&g_ep=EgoyMDI0MDgyNy4wIKXMDSoASAFQAw%3D%3D','_blank').focus()">
+                <img src="css/media/localw.png" id="local">
+                <h5>ETEC Adolpho Berezin</h5>
+            </div>
+            <div class="info-local" onclick="window.open('https://www.google.com/maps/place/Etec+Adolpho+Berezin/@-24.12219,-46.678684,15z/data=!4m6!3m5!1s0x94ce27e8f7751d31:0x6382eb95def97024!8m2!3d-24.12219!4d-46.678684!16s%2Fg%2F1tczg0ht?entry=ttu&g_ep=EgoyMDI0MDgyNy4wIKXMDSoASAFQAw%3D%3D','_blank').focus()">
+                <img src="css/media/place.png" id="local">
+                <h5>Av. Monteiro Lobato, nº 8000<br>Bal. Jussara, Mongaguá</h5>
+            </div>
     </div>
 </div>
 
     <div class="footer">
         <p>Site desenvolvido pelos alunos
             <br><a href="https://github.com/niButera">Nicolas</a> e <a href="https://github.com/yukio-sato">Yukio</a>
-            3i3 -
-            1º Semestre - 2024
         </p>
     </div>
 </body>

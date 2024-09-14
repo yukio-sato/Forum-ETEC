@@ -36,9 +36,9 @@
             require "conexao.php";
 
             $userCPF = '';
-            if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            if ($_SERVER['REQUEST_METHOD'] === 'POST') { // se receber o cpf via POST
                 $userCPF = $_POST['cpf'];
-            } else{
+            } else{ // se receber por via get
                 $userCPF = $_GET['cpf'];
             }
 
@@ -49,12 +49,12 @@
             $resultCheck2 = $conn->query($sqlChecker2);
 
                 if ($resultCheck->num_rows > 0){
-                    while($row2 = $resultCheck2->fetch_assoc()) {
+                    while($row2 = $resultCheck2->fetch_assoc()) { // dias selecionados (para alunos aparece todos)
                         echo '
                         <p>Palestra do Dia: '.$row2['dt_evento'].'</p>
                         ';
                     }
-                    while($row = $resultCheck->fetch_assoc()) {
+                    while($row = $resultCheck->fetch_assoc()) { // as informações do cadastrado
                         echo '
                         <hr>
                         <p>Nome: '.$row["nm_pessoa"].'</p>
@@ -75,10 +75,8 @@
     <div class="footer" style="margin-top: 25%;">
         <h5>Site desenvolvido pelos alunos
             <br><a href="https://github.com/niButera">Nicolas</a> e <a href="https://github.com/yukio-sato">Yukio</a>
-            3i3 - 1º Semestre - 2024
         </h5>
     </div>
 </body>
-
 
 </html>

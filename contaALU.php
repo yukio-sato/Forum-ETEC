@@ -15,9 +15,6 @@
         href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
         rel="stylesheet">
 
-    <!-- JS -->
-    <script src="js/password.js"></script>
-    
     <title>Fórum Tecnológico Interdisciplinar</title>
 </head>
 
@@ -28,18 +25,24 @@
         <img src="css/media/flogo2.jpg" id="logo" alt="Logo ETEC Adolpho Berezin" width="75%">
         <img src="css/media/empty.png" id="back">
     </div>
-
     <div class="content">
         <!-- INFORMAÇÕES -->
         <br>
         <br>
-        <h1>Gestão Login</h1>
-        <form action="gestao.php" method="post">
-            <input type="text" name="g-logged" value="sim" hidden>
-            <button id="visibling" type="button">⊙</button>
-            <input type="password" id="pswd">
-            <button type="submit">Confirmar</button>
-        </form>
+        <h1>QR Code Escaneado</h1>
+        <?php
+            require "conexao.php";
+
+            $sql = "UPDATE tb_generico SET qt_lido = qt_lido + 1";
+
+            if ($conn->query($sql) === true){
+                echo '<script>window.location.href = "atualizado.html"</script>';
+            }
+            else{
+                echo "<p>Houve um erro em atualizar o dia.</p>";
+                echo "UPDATE tb_pessoa SET dia_pessoa = dia_pessoa + 1 WHERE cpf_pessoa = '".$userCPF."' and dia_pessoa < 3;";
+            }
+        ?>
     </div>
 
     <div class="footer" style="margin-top: 25%;">
@@ -48,5 +51,6 @@
         </h5>
     </div>
 </body>
+
 
 </html>

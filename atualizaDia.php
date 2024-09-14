@@ -53,7 +53,6 @@
     <div class="footer" style="margin-top: 25%;">
         <h5>Site desenvolvido pelos alunos
             <br><a href="https://github.com/niButera">Nicolas</a> e <a href="https://github.com/yukio-sato">Yukio</a>
-            3i3 - 1º Semestre - 2024
         </h5>
     </div>
 </body>

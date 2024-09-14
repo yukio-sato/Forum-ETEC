@@ -22,10 +22,10 @@
 </head>
 
 <body>
-    <!-- CABEÇALHO -->
     <?php
     require "g-Verify.php";
     ?>
+    <!-- CABEÇALHO -->
     <div class="header">
         <a onclick="history.back();"> <img src="css/media/voltar.png" id="back" alt="Voltar"></a>
         <h1>Leitor de QR Code</h1>
@@ -43,10 +43,8 @@
     <div class="footer">
         <h5>Site desenvolvido pelos alunos
             <br><a href="https://github.com/niButera">Nicolas</a> e <a href="https://github.com/yukio-sato">Yukio</a>
-            3i3 - 1º Semestre - 2024
         </h5>
     </div>
 </body>
-
 
 </html>

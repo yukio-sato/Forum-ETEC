@@ -1,58 +1,70 @@
-drop database forume33_db_cadastro;
+#drop database forume33_db_cadastro;
 create database forume33_db_cadastro;
 use forume33_db_cadastro;
 
+# tabela de eventos planejados
 create table tb_evento(
-	cd_evento int auto_increment not null,
-	dt_evento date,
-    nr_limite int,
-	primary key (cd_evento)
+	cd_evento int auto_increment not null,   # código do evento (unica)
+	dt_evento date,                          # dia em que ocorrerá o evento
+    nr_limite int,                           # quantidade limite de vagas
+	primary key (cd_evento)                  # define a chave primaria
 );
 
 # Date Format: YYYY-MM-DD, ou traduzindo: Ano-Mes-Dia
-insert into tb_evento # Valores Não 100% atualizado
+insert into tb_evento
 values
-(null,"2024-09-09",400),   # -----------Dia 09/09/2024------------
-(null,"2024-09-10",400), # -----------Dia 10/09/2024------------
-(null,"2024-09-11",400),   # -----------Dia 11/09/2024------------
-(null,"2024-09-12",400); # -----------Dia 12/09/2024------------
+(null,"2024-09-09",400),                     # Dia 09/09/2024 [Limite de vagas 400]
+(null,"2024-09-10",400),                     # Dia 10/09/2024 [Limite de vagas 400]
+(null,"2024-09-11",400),                     # Dia 11/09/2024 [Limite de vagas 400]
+(null,"2024-09-12",400);                     # Dia 12/09/2024 [Limite de vagas 400] 
+
 
 select * from tb_evento;
 
+# tabela de cadastro
 create table tb_pessoa(
-    cpf_pessoa char(14) not null,
-	nm_pessoa varchar(45),
-    email_pessoa varchar(45),
-    curso_pessoa varchar(45),
-    id_pessoa char(3) not null,
-    dia_pessoa int,
-    primary key(cpf_pessoa)
+    cpf_pessoa char(14) not null,            # cpf da pessoa (utilizado para identificar a pessoa)
+	nm_pessoa varchar(45),                   # nome da pessoa
+    email_pessoa varchar(45),                # email da pessoa (utilizado para enviar o email)
+    curso_pessoa varchar(45),                # curso da pessoa (se for um convidado, então define como "Curso")
+    id_pessoa char(3) not null,              # como a pessoa entrou: visitante ou aluno
+    dia_pessoa int,                          # quantidade de dias que a pessoa participou
+    primary key(cpf_pessoa)                  # define a chave primaria
 );
 
 select * from tb_pessoa;
 
-
+# tabela para etiquetas personalizadas
 create table tb_especial(
-    cd_especial int not null auto_increment,
-	nm_especial varchar(45),
-    funcao_especial varchar(45),
-    primary key(cd_especial)
+    cd_especial int not null auto_increment, # codigo único
+	nm_especial varchar(45),                 # nome da pessoa
+    funcao_especial varchar(45),             # função/cargo da pessoa
+    primary key(cd_especial)                 # define a chave primaria
 );
 
 select * from tb_especial;
 
-
+# todos os visitantes/alunos que escolheram algum evento (alunos estão em todos os eventos)
 create table tb_cadastrado(
-	cd_cadastrado int auto_increment not null,
-    fk_cpf_pessoa char(14),
-    fk_cd_evento int,
-    foreign key (fk_cpf_pessoa) references tb_pessoa(cpf_pessoa),
-	foreign key (fk_cd_evento) references tb_evento(cd_evento),
-	primary key (cd_cadastrado)
+	cd_cadastrado int auto_increment not null,                    # código único
+    fk_cpf_pessoa char(14),                                       # valor que receberá a chave estrangeira
+    fk_cd_evento int,                                             # valor que receberá a chave estrangeira
+    foreign key (fk_cpf_pessoa) references tb_pessoa(cpf_pessoa), # chave estrangeira da tabela pessoa
+	foreign key (fk_cd_evento) references tb_evento(cd_evento),   # chave estrangeira da tabela evento
+	primary key (cd_cadastrado)                                   # define a chave primaria
 );
 
 select * from tb_cadastrado;
-#utilize drop database em TESTES para remover os valores, caso contrário você apagará todas as informações do usuário
+
+# tabela que armazenará quem já foi imprimido
+create table tb_imprimido(
+	cd_imprimido int not null auto_increment,                    # código unico
+    fk_cpf_pessoa char(14) not null,                             # cpf da pessoa imprimida
+    primary key(cd_imprimido),                                   # define a chave primaria
+    foreign key (fk_cpf_pessoa) references tb_pessoa(cpf_pessoa) # define a chave estrangeira da tabela pessoa
+);
+
+#utilize drop database em TESTES para remover os valores, caso contrário você apagará todas as informações do usuário cadastrados
 #no caso citado acima você terá que utilizar update table ou alter table dependendo da situação:
 #alter table para alterar valores fixos da tabela, exemplo: chave primaria, nm_pessoa e entre outros
 #update funciona somente em valores de Insert, exemplo: update tb_pessoa set nm_pessoa = 'teste' where cd_pessoa = 1;
@@ -60,6 +72,7 @@ select * from tb_cadastrado;
 #update tb_pessoa set dia_pessoa = dia_pessoa + 1 where cpf_pessoa = '000.000.000-00'; para atualizar o dia
 
 #select * from tb_pessoa where cpf_pessoa = '000.000.000-00'; para achar a pessoa
-#select * from tb_cadastrado where fk_cd_evento = 0; altere o 0 para o código do evento
+#select * from tb_pessoa where curso_pessoa = 'Curso'; para achar todos registrador em um curso selecionado (para visitante utiliza-se "Curso")
+#select * from tb_cadastrado where fk_cd_evento = 0; altere o '0' para o código do evento
 
-#Senha: f0rum3t3cab!
+#Senha do banco de dados: f0rum3t3cab!

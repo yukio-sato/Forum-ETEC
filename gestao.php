@@ -31,13 +31,16 @@
     </form>
     <form action="leitorQRCode.php" method="post">
         <input type="text" name="g-logged" value="sim" hidden>
-        <button id="Rlt" class="Btn2">Ler QR Code</button>
+        <button id="Glr" class="Btn2">Ler QR Code</button>
     </form>
     <form action="qrCodeGen.php" method="post">
         <input type="text" name="g-logged" value="sim" hidden>
         <button id="Rlt" class="Btn2">Gerar PDF dos Cadastrados</button>
     </form>
-
+    <form action="qrCodeFakeGen.php" method="post">
+        <input type="text" name="g-logged" value="sim" hidden>
+        <button id="Rlt" class="Btn2">Gerar PDF dos Personalizados</button>
+    </form>
 </body>
 
 </html>
